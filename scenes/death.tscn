@@ -1,0 +1,155 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjdmy5j3f1oyw"]
+
+[ext_resource type="Shader" path="res://assets/CRT.gdshader" id="1_2p2pm"]
+[ext_resource type="FontFile" uid="uid://cws3a6byu1gb8" path="res://assets/HomeVideo-BLG6G.ttf" id="2_26ch2"]
+[ext_resource type="FontFile" uid="uid://cy7bxvm0b70uv" path="res://assets/HomeVideoBold-R90Dv.ttf" id="2_prrxl"]
+[ext_resource type="Script" path="res://scripts/play.gd" id="3_xe6qx"]
+[ext_resource type="Script" path="res://scripts/exit.gd" id="4_o063w"]
+[ext_resource type="Script" path="res://scripts/scoreVal.gd" id="5_83plf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p183g"]
+shader = ExtResource("1_2p2pm")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="death" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -476.0
+offset_top = -478.5
+offset_right = 476.0
+offset_bottom = 478.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="youDied" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -408.0
+offset_top = 30.0
+offset_right = 408.0
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_prrxl")
+theme_override_font_sizes/font_size = 170
+text = "YOU DIED"
+
+[node name="play" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -230.0
+offset_right = 400.0
+offset_bottom = -50.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_26ch2")
+theme_override_font_sizes/font_size = 60
+action_mode = 0
+text = "PLAY
+"
+script = ExtResource("3_xe6qx")
+
+[node name="exit" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -230.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_26ch2")
+theme_override_font_sizes/font_size = 60
+action_mode = 0
+text = "EXIT"
+script = ExtResource("4_o063w")
+
+[node name="score" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -250.5
+offset_right = 180.0
+offset_bottom = -159.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_prrxl")
+theme_override_font_sizes/font_size = 100
+text = "score:"
+
+[node name="scoreVal" type="Label" parent="Panel/score"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = 154.5
+offset_right = 90.0
+offset_bottom = 244.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_26ch2")
+theme_override_font_sizes/font_size = 150
+text = "100"
+script = ExtResource("5_83plf")
+
+[node name="crtShader" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_p183g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="Panel/play" to="Panel/play" method="_on_pressed"]
+[connection signal="pressed" from="Panel/exit" to="Panel/exit" method="_on_pressed"]

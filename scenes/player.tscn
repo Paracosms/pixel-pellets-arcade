@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bu3sn4a2qrts4"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_yim74"]
+[ext_resource type="Texture2D" uid="uid://d12q8oq8gp7id" path="res://assets/sprites/player.png" id="2_yxpwd"]
+[ext_resource type="Script" path="res://scripts/gun.gd" id="3_wbtwj"]
+[ext_resource type="Script" path="res://scripts/killSurroundingBullets.gd" id="4_j2tr6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7odh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gxshq"]
+radius = 255.049
+
+[node name="player" type="CharacterBody2D"]
+collision_mask = 4
+motion_mode = 1
+slide_on_ceiling = false
+script = ExtResource("1_yim74")
+
+[node name="playerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_yxpwd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w7odh")
+
+[node name="gun" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+script = ExtResource("3_wbtwj")
+
+[node name="killSurroundingBullets" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("4_j2tr6")
+
+[node name="killzone" type="CollisionShape2D" parent="killSurroundingBullets"]
+shape = SubResource("CircleShape2D_gxshq")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="timeout" from="gun" to="gun" method="_on_timeout"]

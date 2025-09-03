@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://l8de50bwd2eu"]
+
+[ext_resource type="Texture2D" uid="uid://baq1ohyx7cv8j" path="res://assets/sprites/enemy.png" id="1_oefkc"]
+[ext_resource type="Script" path="res://scripts/attackTransition.gd" id="1_xtyu1"]
+
+[sub_resource type="Curve2D" id="Curve2D_yb8n0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jajnf"]
+size = Vector2(38, 38)
+
+[node name="attackTransition" type="Node2D"]
+
+[node name="enemy" type="CharacterBody2D" parent="."]
+collision_layer = 4
+script = ExtResource("1_xtyu1")
+
+[node name="attackPattern" type="Path2D" parent="enemy"]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_yb8n0")
+
+[node name="pathTracer" type="PathFollow2D" parent="enemy/attackPattern"]
+rotation = 3.13214
+loop = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+shape = SubResource("RectangleShape2D_jajnf")
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_oefkc")
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="cooldown" to="enemy" method="_on_cooldown_timeout"]

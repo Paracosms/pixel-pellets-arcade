@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8t6akfufjyqb"]
+
+[ext_resource type="Script" path="res://scripts/attack3.gd" id="1_tsm5x"]
+[ext_resource type="Texture2D" uid="uid://baq1ohyx7cv8j" path="res://assets/sprites/enemy.png" id="2_xmsr1"]
+
+[sub_resource type="Curve2D" id="Curve2D_ruo4w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 398, 223, 0, 0, 0, 0, 398, 839, 0, 0, 0, 0, 1658, 839, 0, 0, 0, 0, 1646, 231, 0, 0, 0, 0, 398, 223)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4jr8"]
+size = Vector2(38, 38)
+
+[node name="attack3" type="Node2D"]
+
+[node name="cooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.3
+autostart = true
+
+[node name="enemy" type="CharacterBody2D" parent="."]
+collision_layer = 4
+script = ExtResource("1_tsm5x")
+
+[node name="attackPattern" type="Path2D" parent="enemy"]
+curve = SubResource("Curve2D_ruo4w")
+
+[node name="pathTracer" type="PathFollow2D" parent="enemy/attackPattern"]
+position = Vector2(398, 223)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+shape = SubResource("RectangleShape2D_w4jr8")
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_xmsr1")
+
+[connection signal="timeout" from="cooldown" to="enemy" method="_on_cooldown_timeout"]

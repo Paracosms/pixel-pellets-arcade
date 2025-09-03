@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceuvl0ptruffr"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_2gh71"]
+[ext_resource type="PackedScene" uid="uid://bu3sn4a2qrts4" path="res://scenes/player.tscn" id="1_83vhq"]
+[ext_resource type="PackedScene" uid="uid://dcfkoqx47jgay" path="res://scenes/attack1.tscn" id="2_fgivl"]
+[ext_resource type="PackedScene" uid="uid://ctnr7wplmfgd0" path="res://scenes/hud.tscn" id="3_o4gpi"]
+[ext_resource type="PackedScene" uid="uid://bqc63v8ukgfmg" path="res://scenes/walls.tscn" id="5_ux6jf"]
+
+[node name="game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gh71")
+score = null
+lives = null
+
+[node name="player" parent="." instance=ExtResource("1_83vhq")]
+unique_name_in_owner = true
+position = Vector2(943, 824)
+
+[node name="attack1" parent="." instance=ExtResource("2_fgivl")]
+
+[node name="hud" parent="." instance=ExtResource("3_o4gpi")]
+layout_mode = 1
+
+[node name="walls" parent="." instance=ExtResource("5_ux6jf")]

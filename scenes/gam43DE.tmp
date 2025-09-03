@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://ceuvl0ptruffr"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_2gh71"]
+[ext_resource type="PackedScene" uid="uid://bu3sn4a2qrts4" path="res://scenes/player.tscn" id="1_83vhq"]
+[ext_resource type="PackedScene" uid="uid://ctnr7wplmfgd0" path="res://scenes/hud.tscn" id="3_o4gpi"]
+[ext_resource type="PackedScene" uid="uid://dcfkoqx47jgay" path="res://scenes/attack1.tscn" id="3_v714r"]
+[ext_resource type="PackedScene" uid="uid://bqc63v8ukgfmg" path="res://scenes/walls.tscn" id="5_ux6jf"]
+[ext_resource type="Shader" path="res://assets/CRT.gdshader" id="6_hx744"]
+[ext_resource type="PackedScene" uid="uid://cjdmy5j3f1oyw" path="res://scenes/death.tscn" id="7_6djru"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5fdm"]
+shader = ExtResource("6_hx744")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gh71")
+
+[node name="player" parent="." instance=ExtResource("1_83vhq")]
+unique_name_in_owner = true
+position = Vector2(943, 824)
+
+[node name="attack1" parent="." instance=ExtResource("3_v714r")]
+
+[node name="hud" parent="." instance=ExtResource("3_o4gpi")]
+layout_mode = 1
+
+[node name="walls" parent="." instance=ExtResource("5_ux6jf")]
+
+[node name="death" parent="." instance=ExtResource("7_6djru")]
+visible = false
+layout_mode = 1
+
+[node name="transitionCooldown" type="Timer" parent="."]
+autostart = true
+
+[node name="crtShader" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_i5fdm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="timeout" from="transitionCooldown" to="." method="_on_transition_cooldown_timeout"]
