@@ -1,14 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7wcxs3xa1rxx"]
+[gd_scene load_steps=5 format=3 uid="uid://c7wcxs3xa1rxx"]
 
-[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_gj5ja"]
+[ext_resource type="Script" uid="uid://15wy45kxd1r8" path="res://scripts/bullet.gd" id="1_gj5ja"]
 [ext_resource type="Texture2D" uid="uid://ffws3dh5owu1" path="res://assets/sprites/bullet.png" id="2_fcyhn"]
-[ext_resource type="Script" path="res://scripts/bulletHitbox.gd" id="3_nn6xm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_264bf"]
 size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ds3fy"]
-size = Vector2(10, 10)
+size = Vector2(8, 8)
 
 [node name="bullet" type="CharacterBody2D"]
 collision_layer = 2
@@ -22,12 +21,9 @@ texture = ExtResource("2_fcyhn")
 
 [node name="bulletHitbox" type="Area2D" parent="."]
 collision_layer = 4
-script = ExtResource("3_nn6xm")
 
 [node name="hurtBox" type="CollisionShape2D" parent="bulletHitbox"]
 shape = SubResource("RectangleShape2D_264bf")
 
 [node name="bounceBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ds3fy")
-
-[connection signal="body_entered" from="bulletHitbox" to="bulletHitbox" method="_on_body_entered"]

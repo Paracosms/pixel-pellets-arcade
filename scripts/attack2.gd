@@ -46,4 +46,3 @@ func _ready():
 
 func _process(delta):	
 	rotation += PI/720
-

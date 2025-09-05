@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctnr7wplmfgd0"]
+[gd_scene load_steps=6 format=3 uid="uid://ctnr7wplmfgd0"]
 
 [ext_resource type="FontFile" uid="uid://cws3a6byu1gb8" path="res://assets/HomeVideo-BLG6G.ttf" id="1_fsab8"]
-[ext_resource type="Script" path="res://scripts/scoreUpdater.gd" id="1_tjgkx"]
-[ext_resource type="Script" path="res://scripts/resolutionUpdater.gd" id="3_xw8sq"]
+[ext_resource type="Script" uid="uid://dcgt3tsfki464" path="res://scripts/scoreUpdater.gd" id="1_tjgkx"]
+[ext_resource type="Script" uid="uid://81j3oxiafjh0" path="res://scripts/hud.gd" id="1_uo2fv"]
+[ext_resource type="Script" uid="uid://deobv0aofyls" path="res://scripts/resolutionUpdater.gd" id="3_xw8sq"]
 [ext_resource type="Texture2D" uid="uid://bduvxjnpsdyra" path="res://assets/sprites/tv.png" id="4_4hjp2"]
 
 [node name="hud" type="Control"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uo2fv")
 
 [node name="topLeft" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -21,7 +23,7 @@ offset_top = 20.0
 offset_right = 60.0
 offset_bottom = 60.0
 
-[node name="scoreUpdater" type="Label" parent="topLeft"]
+[node name="scoreUpdater" type="Label" parent="topLeft" groups=["invisibleOnDeath"]]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 0
@@ -34,7 +36,7 @@ theme_override_font_sizes/font_size = 60
 text = "Score: 0"
 script = ExtResource("1_tjgkx")
 
-[node name="resolutionUpdater" type="Label" parent="topLeft"]
+[node name="resolutionUpdater" type="Label" parent="topLeft" groups=["invisibleOnDeath"]]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1

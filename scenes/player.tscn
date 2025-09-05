@@ -1,17 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu3sn4a2qrts4"]
+[gd_scene load_steps=8 format=3 uid="uid://bu3sn4a2qrts4"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_yim74"]
+[ext_resource type="Script" uid="uid://bomqrtkl0uvmh" path="res://scripts/player.gd" id="1_yim74"]
 [ext_resource type="Texture2D" uid="uid://d12q8oq8gp7id" path="res://assets/sprites/player.png" id="2_yxpwd"]
-[ext_resource type="Script" path="res://scripts/gun.gd" id="3_wbtwj"]
-[ext_resource type="Script" path="res://scripts/killSurroundingBullets.gd" id="4_j2tr6"]
+[ext_resource type="Script" uid="uid://cxxe8id0w7g0s" path="res://scripts/gun.gd" id="3_wbtwj"]
+[ext_resource type="Script" uid="uid://cpkr8qjw2c86m" path="res://scripts/killSurroundingBullets.gd" id="4_j2tr6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7odh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gxshq"]
 radius = 255.049
 
-[node name="player" type="CharacterBody2D"]
-collision_mask = 4
+[node name="player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 20
 motion_mode = 1
 slide_on_ceiling = false
 script = ExtResource("1_yim74")
@@ -27,7 +29,18 @@ wait_time = 0.1
 autostart = true
 script = ExtResource("3_wbtwj")
 
-[node name="killSurroundingBullets" type="Area2D" parent="."]
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("RectangleShape2D_dqkch")
+
+[node name="grazebox" type="Area2D" parent="."]
+
+[node name="IMPLEMENT LATER" type="CollisionShape2D" parent="grazebox"]
+shape = SubResource("RectangleShape2D_dqkch")
+
+[node name="killSurroundingBullets" type="Area2D" parent="." groups=["areaSurroundingPlayer"]]
 collision_mask = 2
 script = ExtResource("4_j2tr6")
 
@@ -36,3 +49,4 @@ shape = SubResource("CircleShape2D_gxshq")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [connection signal="timeout" from="gun" to="gun" method="_on_timeout"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var input = Vector2.ZERO
 const SPEED = 300
+signal damagePlayer
 
 # call movement function on each player frame
 func _physics_process(delta):
@@ -18,3 +19,9 @@ func player_movement(delta):
 	velocity = get_input() * SPEED
 	move_and_slide()
 
+func die():
+	queue_free()
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	body.queue_free()
+	emit_signal("damagePlayer")

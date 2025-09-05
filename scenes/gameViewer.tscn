@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://ceuvl0ptruffr"]
+
+[ext_resource type="Script" uid="uid://dhrnt2pqtyfff" path="res://scripts/game.gd" id="1_2gh71"]
+[ext_resource type="PackedScene" uid="uid://bu3sn4a2qrts4" path="res://scenes/player.tscn" id="1_83vhq"]
+[ext_resource type="PackedScene" uid="uid://ctnr7wplmfgd0" path="res://scenes/hud.tscn" id="3_o4gpi"]
+[ext_resource type="PackedScene" uid="uid://dcfkoqx47jgay" path="res://scenes/attack1.tscn" id="3_v714r"]
+[ext_resource type="PackedScene" uid="uid://bqc63v8ukgfmg" path="res://scenes/walls.tscn" id="5_ux6jf"]
+[ext_resource type="PackedScene" uid="uid://cjdmy5j3f1oyw" path="res://scenes/death.tscn" id="7_6djru"]
+[ext_resource type="Script" uid="uid://dv6m2pfgtubgb" path="res://scripts/hurtLogicArcade.gd" id="8_0tnpc"]
+[ext_resource type="Script" uid="uid://gvfjw0pmt1x1" path="res://scripts/hurtLogicLegacy.gd" id="9_vtaks"]
+
+[node name="gameViewer" type="SubViewportContainer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+stretch = true
+
+[node name="game" type="SubViewport" parent="." node_paths=PackedStringArray("hurtLogicComponent")]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+size_2d_override = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+script = ExtResource("1_2gh71")
+hurtLogicComponent = NodePath("hurtLogicArcade")
+
+[node name="player" parent="game" instance=ExtResource("1_83vhq")]
+unique_name_in_owner = true
+position = Vector2(943, 824)
+
+[node name="attack1" parent="game" instance=ExtResource("3_v714r")]
+
+[node name="hud" parent="game" instance=ExtResource("3_o4gpi")]
+
+[node name="walls" parent="game" instance=ExtResource("5_ux6jf")]
+
+[node name="death" parent="game" instance=ExtResource("7_6djru")]
+unique_name_in_owner = true
+visible = false
+
+[node name="transitionCooldown" type="Timer" parent="game"]
+wait_time = 5.0
+autostart = true
+
+[node name="hurtLogicArcade" type="Node" parent="game"]
+script = ExtResource("8_0tnpc")
+
+[node name="hurtLogicLegacy" type="Node" parent="game"]
+script = ExtResource("9_vtaks")
+
+[connection signal="timeout" from="game/transitionCooldown" to="game" method="_on_transition_cooldown_timeout"]
