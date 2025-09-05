@@ -7,7 +7,8 @@ func loseLife():
 	Globals.lives -= 1
 	emit_signal("updateHealthSprites")
 	if Globals.lives == 0: 
-		kill()
+		# get_parent() is necessary here so that the game variable playerAlive is reset
+		get_parent().kill()
 
 func setResolution(resolution : Vector2): 
 	get_parent().setSize(resolution)
@@ -16,13 +17,15 @@ func setResolution(resolution : Vector2):
 # polish: add a cold front effect that shows what bullets are cleared
 func hurt():
 	loseLife()
-	setResolution(Globals.resolutions[Globals.lives - 1])
+	Globals.currentResolution *= Globals.scaleFactors[Globals.lives - 1]
+	setResolution(Globals.currentResolution)
 	get_tree().call_group("areaSurroundingPlayer", "clearArea")
 
 # resets window to normal size, overlays death ui and disables the player
 # polish: add a tv turn off when you die
 func kill():
 	setResolution(Globals.baseResolution)
+	Globals.currentResolution = Globals.baseResolution
 	get_tree().call_group("player", "die")
 	emit_signal("displayDeathScreen")
 	get_tree().call_group("invisibleOnDeath", "turnInvisible")

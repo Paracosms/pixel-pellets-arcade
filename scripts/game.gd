@@ -51,6 +51,9 @@ func _ready():
 	hurtLogicComponent.connect("displayDeathScreen", displayDeathScreen)
 	reset()
 
+func _process(delta: float) -> void:
+	Globals.baseResolution = DisplayServer.window_get_size()
+
 # every 5 seconds, there's a 1/5 chance to transition attacks
 func _on_transition_cooldown_timeout():
 	var RNG = randi_range(1,3)
