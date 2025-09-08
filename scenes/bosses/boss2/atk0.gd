@@ -1,3 +1,5 @@
+### This attack follows the player and shoots directly at them
+
 extends Node
 
 @export var SPEED : int = 100

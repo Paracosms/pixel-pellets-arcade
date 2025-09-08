@@ -7,6 +7,5 @@ script = ExtResource("1_5i48f")
 
 [node name="bulletTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.5
 
 [connection signal="timeout" from="bulletTimer" to="." method="spawnBullets"]

@@ -2,7 +2,9 @@ extends CharacterBody2D
 
 @onready var phaseScenes = [
 	preload("res://scenes/bosses/boss2/atk0.tscn"),
-	preload("res://scenes/bosses/boss2/atk1.tscn")
+	preload("res://scenes/bosses/boss2/atk1.tscn"),
+	preload("res://scenes/bosses/boss2/atk2.tscn"),
+	preload("res://scenes/bosses/boss2/atk3.tscn")
 ]
 
 @export var phase : Node
@@ -11,6 +13,9 @@ var isMoving : bool = false
 var currentPhaseIndex : int
 
 func _physics_process(delta: float) -> void:
+	
+	#print("boss 2 physics function: global player pos - global boss pos = " + str(Globals.playerPos.x - global_position.x))
+	
 	# getMovementPattern updates variables here that boss2 can execute
 	phase.getMovementPattern()
 	
@@ -21,10 +26,11 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func transition():
-	### TODO: you left off working on the transition. notes are in the discord #projects
-	var phaseIndex = randi_range(0, 1) ### UPDATE LATER
+	var phaseIndex = randi_range(0, phaseScenes.size() - 1)
 	while phaseIndex == currentPhaseIndex:
-		phaseIndex = randi_range(0, 1) ### UPDATE LATER
+		phaseIndex = randi_range(0, phaseScenes.size() - 1)
+	
+	# phaseIndex = 3 ### DEBUG, SET TEST PHASE HERE
 	
 	print("transitioning to " + str(phaseIndex))
 	var nextPhase = phaseScenes[phaseIndex].instantiate()

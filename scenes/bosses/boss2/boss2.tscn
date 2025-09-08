@@ -11,10 +11,10 @@ size = Vector2(26, 76)
 size = Vector2(26, 76)
 
 [node name="boss2" type="CharacterBody2D" node_paths=PackedStringArray("phase") groups=["boss"]]
-position = Vector2(754, 433)
+position = Vector2(960, 540)
 collision_layer = 4
 script = ExtResource("1_t20g5")
-phase = NodePath("Atk2")
+phase = NodePath("Atk1")
 
 [node name="hurtPlayer" type="Area2D" parent="."]
 collision_layer = 4
@@ -33,7 +33,7 @@ texture = ExtResource("2_njrkb")
 wait_time = 10.0
 autostart = true
 
-[node name="Atk2" parent="." instance=ExtResource("3_njrkb")]
+[node name="Atk1" parent="." instance=ExtResource("3_njrkb")]
 
 [connection signal="area_entered" from="hurtPlayer" to="." method="_on_hurt_player_area_entered"]
 [connection signal="timeout" from="transitionTimer" to="." method="transition"]

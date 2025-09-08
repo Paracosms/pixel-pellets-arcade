@@ -1,18 +1,25 @@
-### This attack moves the boss to the center and shoots lines of bullets across the axes and diagonals
+### This attack moves to the boss to the left and right and shoots bullets directly up and down
 
 extends Node
 
 @export var SPEED : int = 200
-@export var BULLETSPEED : int = 150
+@export var BULLETSPEED : int = 200
 @onready var bulletScene = preload("res://scenes/bullet.tscn")
 @onready var boss = get_parent()
 
-var stopPosition : Vector2 = Vector2(1920/2,1080/2)
+var direction : int # negative = left, positive = right
 var isStopped : bool = false
-var dontShoot : bool = true
 
 func _ready() -> void:
-	boss.currentPhaseIndex = 1
+	boss.currentPhaseIndex = 2
+	boss.rotation = 0
+	# if Globals.playerPos.x - boss.global_position.x is negative, the boss is to the right of the player, therefore it should move left towards it
+	if (Globals.playerPos.x - boss.global_position.x) < 0:
+		direction = -1 # move to the left
+		print("distance to player negative, move left")
+	else:
+		direction = 1 # move to the left
+		print("distance to player positive, move right")
 
 # run and look at the player
 func getMovementPattern():
@@ -21,14 +28,16 @@ func getMovementPattern():
 
 func getVelocity() -> Vector2:
 	# direction is always final pos - initial pos
-	if boss.global_position == stopPosition:
-		return Vector2.ZERO
+	if direction == -1 :
+		# player is on the left; move left
+		return Vector2(-1,0) * SPEED
 	else:
-		return (stopPosition - boss.global_position).normalized() * SPEED
+		# player is on the right; move right
+		return Vector2(1,0) * SPEED
 
 # bulletTimer holds how long it should wait before it calls spawnBullets
 func spawnBullets():
-	var angles = [0, PI/4, PI/2, 3*PI/4, PI, 5*PI/4, 3*PI/2, 7*PI/4] # omg unit circle
+	var angles = [PI/2, 3*PI/2] # vertical
 	# how far from the enemy should the bullets spawn
 	var offset = 5
 	
@@ -48,11 +57,6 @@ func spawnBullets():
 		bullet.name = "bullet"
 
 func _physics_process(delta: float) -> void:
-	# 3 is picked here because apparently thats the closest it gets to being on top of stopPosition
-	if (stopPosition - boss.global_position).length() <= 3:
-		boss.rotation += PI/180.0
-	
-	# start spawning bullets if stopped
-	if !isStopped && (stopPosition - boss.global_position).length() <= 3:
-		isStopped = true
-		%bulletTimer.start()
+	# if the boss hits a wall, turn around
+	if boss.position.x > 1920 || boss.position.x < 0:
+		direction *= -1
