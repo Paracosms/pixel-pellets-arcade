@@ -61,7 +61,13 @@ func center_window():
 	var newPosition = (monitorSize - windowSize) / 2
 	DisplayServer.window_set_position(newPosition)
 
-### old transition logic that im taking out of game.gd
+### everything below this line is old transition logic that im taking out of game.gd
+
+#@onready var attack1 = preload("res://scenes/attack1.tscn")
+#@onready var attack2 = preload("res://scenes/attack2.tscn")
+#@onready var attack3 = preload("res://scenes/attack3.tscn")
+
+
 # every 5 seconds, there's a 1/5 chance to transition attacks
 #func _on_transition_cooldown_timeout():
 	#var RNG = randi_range(1,3)

@@ -2,7 +2,16 @@ extends Node
 
 var lives = 4 # serves as the index for resolutions and scaleFactors
 var baseResolution = DisplayServer.window_get_size() # TODO: figure out difficulty scaling 
-var resolutions = [Vector2i(640, 360), Vector2i(854, 480),  Vector2i(1280,720) , Vector2i(1920,1080)] # remove next patch
+var bulletBouncesBeforeDeath = 3
 var currentResolution : Vector2 = baseResolution
 var scaleFactors = [320.0/427, 427.0/640, 2.0/3, 1]
 var playerPos = Vector2.ZERO
+
+func playSound(sound : AudioStream, volume : float = 0.0) -> void:
+	var soundPlayer = AudioStreamPlayer.new()
+	add_child(soundPlayer)
+	soundPlayer.stream = sound
+	soundPlayer.volume_db = volume
+	soundPlayer.play()
+	# kill after finished
+	soundPlayer.finished.connect(func(): soundPlayer.queue_free())

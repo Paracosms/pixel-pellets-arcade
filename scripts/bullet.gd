@@ -6,7 +6,7 @@ func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		timesBounced += 1
-		if timesBounced == 3:
+		if timesBounced == Globals.bulletBouncesBeforeDeath:
 			queue_free()
 		velocity = velocity.bounce(collision.get_normal())
 	

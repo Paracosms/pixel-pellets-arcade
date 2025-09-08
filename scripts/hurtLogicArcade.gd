@@ -1,5 +1,8 @@
 extends Node
 
+@onready var hurtSound = preload("res://assets/audio/sfx/playerHurt.wav")
+@onready var deathSound = preload("res://assets/audio/sfx/playerDeath.wav")
+
 signal updateHealthSprites
 signal displayDeathScreen
 
@@ -17,6 +20,7 @@ func setResolution(resolution : Vector2):
 # polish: add a cold front effect that shows what bullets are cleared
 func hurt():
 	loseLife()
+	Globals.playSound(hurtSound)
 	Globals.currentResolution *= Globals.scaleFactors[Globals.lives - 1]
 	setResolution(Globals.currentResolution)
 	get_tree().call_group("areaSurroundingPlayer", "clearArea")
@@ -24,6 +28,7 @@ func hurt():
 # resets window to normal size, overlays death ui and disables the player
 # polish: add a tv turn off when you die
 func kill():
+	Globals.playSound(deathSound)
 	setResolution(Globals.baseResolution)
 	Globals.currentResolution = Globals.baseResolution
 	get_tree().call_group("player", "die")

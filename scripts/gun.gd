@@ -1,8 +1,10 @@
 extends Timer
 
 @onready var playerBulletScene = preload("res://scenes/playerBullet.tscn")
+@onready var shootSound = preload("res://assets/audio/sfx/playerShoot.wav")
 
 func spawn_bullets():
+	Globals.playSound(shootSound, -25)
 	
 	var mousePos = get_parent().get_local_mouse_position()
 	var direction = mousePos.normalized()

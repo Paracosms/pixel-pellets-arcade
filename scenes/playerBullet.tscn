@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bw0odf1uf7u2i"]
 
-[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_gj5ja"]
+[ext_resource type="Script" uid="uid://15wy45kxd1r8" path="res://scripts/bullet.gd" id="1_gj5ja"]
 [ext_resource type="Texture2D" uid="uid://lillcv7qerrq" path="res://assets/sprites/playerBullet.png" id="2_1j7ih"]
-[ext_resource type="Script" path="res://scripts/playerBulletHitbox.gd" id="3_q8s67"]
+[ext_resource type="Script" uid="uid://dpto6kmjp7e8r" path="res://scripts/playerBulletHitbox.gd" id="3_q8s67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_264bf"]
 size = Vector2(8, 8)
@@ -15,12 +15,12 @@ z_index = -1
 texture_filter = 1
 texture = ExtResource("2_1j7ih")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="hurtBox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_q8s67")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="canHurtBossArea" type="CollisionShape2D" parent="hurtBox"]
 shape = SubResource("RectangleShape2D_264bf")
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="hurtBox" to="hurtBox" method="_on_body_entered"]

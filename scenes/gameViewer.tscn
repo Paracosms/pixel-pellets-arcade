@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bqc63v8ukgfmg" path="res://scenes/walls.tscn" id="5_ux6jf"]
 [ext_resource type="PackedScene" uid="uid://cjdmy5j3f1oyw" path="res://scenes/death.tscn" id="7_6djru"]
 [ext_resource type="Script" uid="uid://dv6m2pfgtubgb" path="res://scripts/hurtLogicArcade.gd" id="8_0tnpc"]
-[ext_resource type="Script" uid="uid://gvfjw0pmt1x1" path="res://scripts/hurtLogicLegacy.gd" id="9_vtaks"]
+[ext_resource type="AudioStream" uid="uid://c6dnhkxe6ymw5" path="res://assets/audio/sfx/gameStart.wav" id="8_856uv"]
 
 [node name="gameViewer" type="SubViewportContainer"]
 texture_filter = 1
@@ -52,5 +52,7 @@ visible = false
 [node name="hurtLogicArcade" type="Node" parent="game"]
 script = ExtResource("8_0tnpc")
 
-[node name="hurtLogicLegacy" type="Node" parent="game"]
-script = ExtResource("9_vtaks")
+[node name="sfxPlayer" type="AudioStreamPlayer" parent="game"]
+stream = ExtResource("8_856uv")
+
+[node name="idleMusic" type="AudioStreamPlayer" parent="game"]

@@ -1,10 +1,6 @@
 extends SubViewport
 
-@onready var transitionScene = preload("res://scenes/attackTransition.tscn")
-
-@onready var attack1 = preload("res://scenes/attack1.tscn")
-@onready var attack2 = preload("res://scenes/attack2.tscn")
-@onready var attack3 = preload("res://scenes/attack3.tscn")
+@onready var gameStartSound = preload("res://assets/audio/sfx/gameStart.wav")
 
 # global variable location
 @export var score: int = 0
@@ -39,6 +35,7 @@ func reset():
 	hurtLogicComponent.reset()
 
 func _ready():
+	get_node("sfxPlayer").play()
 	%player.connect("damagePlayer", hurt)
 	hurtLogicComponent.connect("displayDeathScreen", displayDeathScreen)
 	reset()

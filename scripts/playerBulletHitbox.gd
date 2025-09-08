@@ -1,6 +1,9 @@
 extends Area2D
 
+@onready var bossHurt = preload("res://assets/audio/sfx/bossHurt.wav")
+
 func _on_body_entered(body):
+	Globals.playSound(bossHurt, -25)
 	get_parent().queue_free()
 	
 	# add 10 to score
