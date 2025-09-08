@@ -23,5 +23,7 @@ func die():
 	queue_free()
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-	body.queue_free()
+	# if the body is not a boss (aka a bullet), kill it
+	if !body.is_in_group("boss"):
+		body.queue_free()
 	emit_signal("damagePlayer")

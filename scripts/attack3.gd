@@ -10,11 +10,8 @@ extends CharacterBody2D
 
 func spawn_bullets():
 	
-	# get player pos from parent
-	var playerPos = get_parent().get_parent().get_player_position()
-	
 	#the vector towards the player is the inverted difference vector between the enemy & player
-	var differenceVector = global_position - playerPos
+	var differenceVector = global_position - Globals.playerPos
 	var angle = differenceVector.normalized() * -1
 	
 	var bullet = bullet_scene.instantiate()

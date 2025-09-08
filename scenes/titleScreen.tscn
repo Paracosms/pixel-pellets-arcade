@@ -75,21 +75,45 @@ grow_vertical = 2
 [node name="walls" parent="." instance=ExtResource("2_sto8h")]
 position = Vector2(-20, -20)
 
-[node name="buttonPanel" type="Panel" parent="."]
+[node name="Container" type="AspectRatioContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -376.0
-offset_top = -280.0
-offset_right = 376.0
-offset_bottom = -119.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
-[node name="quit" type="Button" parent="buttonPanel"]
+[node name="GridContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/separation = 500
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="title" type="Label" parent="Container/GridContainer/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_d8s0n")
+theme_override_font_sizes/font_size = 180
+text = " Pixel Pellets "
+
+[node name="titleWall" type="StaticBody2D" parent="Container/GridContainer/MarginContainer/title"]
+position = Vector2(-150.5, -61)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/GridContainer/MarginContainer/title/titleWall"]
+position = Vector2(961, 142)
+shape = SubResource("RectangleShape2D_mx5d4")
+
+[node name="buttonPanel" type="Panel" parent="Container/GridContainer"]
+custom_minimum_size = Vector2(700, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="quit" type="Button" parent="Container/GridContainer/buttonPanel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -108,7 +132,7 @@ action_mode = 0
 text = "QUIT"
 script = ExtResource("5_vk6tc")
 
-[node name="play" type="Button" parent="buttonPanel"]
+[node name="play" type="Button" parent="Container/GridContainer/buttonPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -124,30 +148,6 @@ action_mode = 0
 text = "PLAY
 "
 script = ExtResource("4_hk15p")
-
-[node name="title" type="Label" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -545.5
-offset_top = 61.0
-offset_right = 546.5
-offset_bottom = 187.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("3_d8s0n")
-theme_override_font_sizes/font_size = 180
-text = " Pixel Pellets "
-
-[node name="titleWall" type="StaticBody2D" parent="title"]
-position = Vector2(-150.5, -61)
-collision_layer = 16
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="title/titleWall"]
-position = Vector2(961, 142)
-shape = SubResource("RectangleShape2D_mx5d4")
 
 [node name="crtShader" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_bnmuo")
@@ -192,5 +192,5 @@ theme_override_fonts/font = ExtResource("3_7s7rv")
 theme_override_font_sizes/font_size = 20
 text = "v1.1.1"
 
-[connection signal="pressed" from="buttonPanel/quit" to="buttonPanel/quit" method="_on_pressed"]
-[connection signal="pressed" from="buttonPanel/play" to="buttonPanel/play" method="_on_pressed"]
+[connection signal="pressed" from="Container/GridContainer/buttonPanel/quit" to="Container/GridContainer/buttonPanel/quit" method="_on_pressed"]
+[connection signal="pressed" from="Container/GridContainer/buttonPanel/play" to="Container/GridContainer/buttonPanel/play" method="_on_pressed"]

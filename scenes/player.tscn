@@ -41,6 +41,7 @@ shape = SubResource("RectangleShape2D_dqkch")
 shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="killSurroundingBullets" type="Area2D" parent="." groups=["areaSurroundingPlayer"]]
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_j2tr6")
 
