@@ -1,9 +1,9 @@
 extends CharacterBody2D
 @onready var bullet_scene = preload("res://scenes/bullet.tscn")
-@onready var pathTracer : PathFollow2D = $attackPattern/pathTracer
+#@onready var pathTracer : PathFollow2D = $attackPattern/pathTracer
 
 # change texture
-@onready var purpleTexture = preload("res://assets/sprites/bulletPurple.png")
+@onready var purpleTexture = preload("res://assets/sprites/unused/bulletPurple.png")
 
 
 # attack 2:

@@ -4,6 +4,7 @@ extends Area2D
 
 func _on_body_entered(body):
 	Globals.playSound(bossHurt, -25)
+	get_tree().call_group("boss", "takeDamage")
 	get_parent().queue_free()
 	
 	# add 10 to score

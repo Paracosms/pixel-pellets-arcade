@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctnr7wplmfgd0"]
+[gd_scene load_steps=9 format=3 uid="uid://ctnr7wplmfgd0"]
 
 [ext_resource type="FontFile" uid="uid://cws3a6byu1gb8" path="res://assets/HomeVideo-BLG6G.ttf" id="1_fsab8"]
 [ext_resource type="Script" uid="uid://dcgt3tsfki464" path="res://scripts/scoreUpdater.gd" id="1_tjgkx"]
 [ext_resource type="Script" uid="uid://81j3oxiafjh0" path="res://scripts/hud.gd" id="1_uo2fv"]
 [ext_resource type="Script" uid="uid://deobv0aofyls" path="res://scripts/resolutionUpdater.gd" id="3_xw8sq"]
-[ext_resource type="Texture2D" uid="uid://bduvxjnpsdyra" path="res://assets/sprites/tv.png" id="4_4hjp2"]
+[ext_resource type="Texture2D" uid="uid://bduvxjnpsdyra" path="res://assets/sprites/stationary/tv.png" id="4_4hjp2"]
+[ext_resource type="Texture2D" uid="uid://cuck6s6i3mbc2" path="res://assets/sprites/stationary/bossBarUnder.png" id="6_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://bx3g5hwd4cxno" path="res://assets/sprites/stationary/bossBarOver.png" id="7_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://b510fisd64mke" path="res://assets/sprites/stationary/bossBarProgress.png" id="8_mphia"]
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -96,3 +99,27 @@ texture_filter = 1
 position = Vector2(1800, 95)
 scale = Vector2(2, 2)
 texture = ExtResource("4_4hjp2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -77.0
+offset_right = 400.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="bossHealthBar" type="TextureProgressBar" parent="MarginContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("6_hd3ao")
+texture_over = ExtResource("7_0i1j5")
+texture_progress = ExtResource("8_mphia")
+texture_progress_offset = Vector2(40, 12)

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var timesBounced = 0
+@export var timesBounced = 0
 
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)

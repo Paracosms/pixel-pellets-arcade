@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d12q8oq8gp7id"
-path="res://.godot/imported/player.png-e1eaffe0873063c60a0d0b322e4d87d9.ctex"
+uid="uid://ddptww6ivfgl5"
+path="res://.godot/imported/bulletPurple.png-bdba716c623d02e685457062a3731014.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player.png"
-dest_files=["res://.godot/imported/player.png-e1eaffe0873063c60a0d0b322e4d87d9.ctex"]
+source_file="res://assets/sprites/unused/bulletPurple.png"
+dest_files=["res://.godot/imported/bulletPurple.png-bdba716c623d02e685457062a3731014.ctex"]
 
 [params]
 

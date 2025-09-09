@@ -13,7 +13,7 @@ config_version=5
 config/name="Pixel Pellets Arcade"
 run/main_scene="res://scenes/titleScreen.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://assets/sprites/enemy.png"
+config/icon="res://assets/sprites/unused/enemy.png"
 
 [autoload]
 
@@ -23,7 +23,6 @@ Globals="*res://scripts/globals.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=4
 window/size/resizable=false
 
 [editor_plugins]

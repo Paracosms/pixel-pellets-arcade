@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddptww6ivfgl5"
-path="res://.godot/imported/bulletPurple.png-3a49fae93525463b745e6ac2a20a4ca1.ctex"
+uid="uid://cuck6s6i3mbc2"
+path="res://.godot/imported/bossBarUnder.png-a76620e6819bddd980947cdf3aa4431e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bulletPurple.png"
-dest_files=["res://.godot/imported/bulletPurple.png-3a49fae93525463b745e6ac2a20a4ca1.ctex"]
+source_file="res://assets/sprites/stationary/bossBarUnder.png"
+dest_files=["res://.godot/imported/bossBarUnder.png-a76620e6819bddd980947cdf3aa4431e.ctex"]
 
 [params]
 

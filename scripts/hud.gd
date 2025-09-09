@@ -9,3 +9,7 @@ func updateHealth():
 		2: %life3.visible = false
 		1: %life2.visible = false
 		0: %life1.visible = false
+
+func _process(delta: float) -> void:
+	%bossHealthBar.max_value = Globals.maxBossHealth
+	%bossHealthBar.value = Globals.bossHealth

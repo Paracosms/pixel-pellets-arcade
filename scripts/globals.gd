@@ -1,6 +1,8 @@
 extends Node
 
 var lives = 4 # serves as the index for resolutions and scaleFactors
+var bossHealth : int = -1
+var maxBossHealth : int = -1
 var baseResolution = DisplayServer.window_get_size() # TODO: figure out difficulty scaling 
 var bulletBouncesBeforeDeath = 3
 var currentResolution : Vector2 = baseResolution

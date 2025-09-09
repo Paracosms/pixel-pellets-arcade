@@ -7,10 +7,20 @@ extends CharacterBody2D
 	preload("res://scenes/bosses/boss2/atk3.tscn")
 ]
 
+@export var health : int = 200
 @export var phase : Node
 var isLookingAtPlayer : bool = false
 var isMoving : bool = false
 var currentPhaseIndex : int
+
+func takeDamage():
+	Globals.bossHealth -= 1
+	if Globals.bossHealth == 0:
+		queue_free()
+
+func _ready() -> void:
+	Globals.bossHealth = health # number of bullets before death
+	Globals.maxBossHealth = health
 
 func _physics_process(delta: float) -> void:
 	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://l8de50bwd2eu"]
 
-[ext_resource type="Texture2D" uid="uid://baq1ohyx7cv8j" path="res://assets/sprites/enemy.png" id="1_oefkc"]
-[ext_resource type="Script" path="res://scripts/attackTransition.gd" id="1_xtyu1"]
+[ext_resource type="Texture2D" uid="uid://baq1ohyx7cv8j" path="res://assets/sprites/unused/enemy.png" id="1_oefkc"]
+[ext_resource type="Script" uid="uid://c2vg1133jrbdm" path="res://scripts/attackTransition.gd" id="1_xtyu1"]
 
 [sub_resource type="Curve2D" id="Curve2D_yb8n0"]
 

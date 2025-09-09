@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8t6akfufjyqb"]
 
 [ext_resource type="Script" uid="uid://bfbjsb8ncb54w" path="res://scripts/attack3.gd" id="1_tsm5x"]
-[ext_resource type="Texture2D" uid="uid://baq1ohyx7cv8j" path="res://assets/sprites/enemy.png" id="2_xmsr1"]
+[ext_resource type="Texture2D" uid="uid://baq1ohyx7cv8j" path="res://assets/sprites/unused/enemy.png" id="2_xmsr1"]
 
 [sub_resource type="Curve2D" id="Curve2D_ruo4w"]
 _data = {

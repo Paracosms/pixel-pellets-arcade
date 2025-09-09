@@ -16,10 +16,8 @@ func _ready() -> void:
 	# if Globals.playerPos.x - boss.global_position.x is negative, the boss is to the right of the player, therefore it should move left towards it
 	if (Globals.playerPos.x - boss.global_position.x) < 0:
 		direction = -1 # move to the left
-		print("distance to player negative, move left")
 	else:
 		direction = 1 # move to the left
-		print("distance to player positive, move right")
 
 # run and look at the player
 func getMovementPattern():

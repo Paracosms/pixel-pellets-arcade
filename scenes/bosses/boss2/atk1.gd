@@ -42,6 +42,7 @@ func spawnBullets():
 		var angularOffset = angleVector * offset
 		
 		# sets individual bullet properties
+		bullet.timesBounced = Globals.bulletBouncesBeforeDeath - 2
 		bullet.position = boss.global_position # position of the spawner
 		bullet.rotation = angle
 		bullet.velocity = angleVector * BULLETSPEED
