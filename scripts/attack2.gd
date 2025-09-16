@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 @onready var bullet_scene = preload("res://scenes/bullet.tscn")
 #@onready var pathTracer : PathFollow2D = $attackPattern/pathTracer
 
@@ -21,7 +21,7 @@ func spawn_bullets():
 	# for each angle in angles[], spawn an individualized bullet using that angle value
 	for angle in angles:
 		var bullet = bullet_scene.instantiate()
-		get_parent().get_parent().add_child(bullet)
+		get_parent().add_child(bullet)
 		
 		# cos to get x vector, sin to get y vector
 		var angleVector = Vector2(cos(angle + rotation), sin(angle + rotation))
@@ -41,8 +41,9 @@ func spawn_bullets():
 func _on_cooldown_timeout():
 	spawn_bullets()
 
-func _ready():
-	position = Vector2(960,300)
+### used in old transition logic
+#func _ready():
+#	position = Vector2(960,300)
 
 func _process(delta):	
 	rotation += PI/720

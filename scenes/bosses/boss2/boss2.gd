@@ -7,7 +7,7 @@ extends CharacterBody2D
 	preload("res://scenes/bosses/boss2/atk3.tscn")
 ]
 
-@export var health : int = 200
+@export var health : int = 50
 @export var phase : Node
 var isLookingAtPlayer : bool = false
 var isMoving : bool = false
@@ -15,6 +15,8 @@ var currentPhaseIndex : int
 
 func takeDamage():
 	Globals.bossHealth -= 1
+	if Globals.bossHealth == health * 0.75 || Globals.bossHealth == health * 0.50 || Globals.bossHealth == health * 0.25 :
+		transition()
 	if Globals.bossHealth == 0:
 		queue_free()
 
@@ -42,7 +44,7 @@ func transition():
 	
 	# phaseIndex = 3 ### DEBUG, SET TEST PHASE HERE
 	
-	print("transitioning to " + str(phaseIndex))
+	Globals.debug("transitioning to " + str(phaseIndex))
 	var nextPhase = phaseScenes[phaseIndex].instantiate()
 	currentPhaseIndex = phaseIndex
 	phase.queue_free()

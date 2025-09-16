@@ -17,3 +17,13 @@ func playSound(sound : AudioStream, volume : float = 0.0) -> void:
 	soundPlayer.play()
 	# kill after finished
 	soundPlayer.finished.connect(func(): soundPlayer.queue_free())
+
+func debug(message) -> void:
+	var stack = get_stack()
+	if stack.size() > 1:
+		var caller = stack[1]
+		var source = caller.get("source", "unknown")
+		var line := str(caller.get("line", -1))
+		print("[" + source + ":" + line + "]: " + str(message))
+	else:
+		print("[unknown]: " + str(message))

@@ -47,6 +47,7 @@ grow_vertical = 2
 
 [node name="background" type="Sprite2D" parent="game/backgroundContainer"]
 z_index = -2
+texture_filter = 1
 texture = ExtResource("2_r3qtm")
 
 [node name="boss2" parent="game" instance=ExtResource("2_856uv")]

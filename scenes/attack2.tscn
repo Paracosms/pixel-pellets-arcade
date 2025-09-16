@@ -7,6 +7,7 @@
 size = Vector2(38, 38)
 
 [node name="attack2" type="Node2D"]
+script = ExtResource("1_6pktf")
 
 [node name="cooldown" type="Timer" parent="."]
 process_callback = 0
@@ -14,9 +15,7 @@ wait_time = 0.2
 autostart = true
 
 [node name="enemy" type="CharacterBody2D" parent="."]
-position = Vector2(960, 300)
 collision_layer = 4
-script = ExtResource("1_6pktf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
 shape = SubResource("RectangleShape2D_avuj4")
@@ -25,4 +24,4 @@ shape = SubResource("RectangleShape2D_avuj4")
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_hs6vo")
 
-[connection signal="timeout" from="cooldown" to="enemy" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]

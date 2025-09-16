@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var grazeSound = preload("res://assets/audio/sfx/graze.wav")
+
 var input = Vector2.ZERO
 const SPEED = 300
 signal damagePlayer
@@ -26,4 +28,12 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 	# if the body is not a boss (aka a bullet), kill it
 	if !body.is_in_group("boss"):
 		body.queue_free()
-	emit_signal("damagePlayer")
+	
+	if !body.is_in_group("parriedBullet"):
+		emit_signal("damagePlayer")
+
+func _on_grazebox_area_entered(area: Area2D) -> void:
+	# TODO: add more functionality here
+	### idea: graze to get resolution back?
+	Globals.playSound(grazeSound, -5)
+	get_parent().score += 10

@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjdmy5j3f1oyw"]
 
-[ext_resource type="Shader" uid="uid://dxhen3wv2ytof" path="res://assets/CRT.gdshader" id="1_2p2pm"]
-[ext_resource type="FontFile" uid="uid://cws3a6byu1gb8" path="res://assets/HomeVideo-BLG6G.ttf" id="2_26ch2"]
-[ext_resource type="FontFile" uid="uid://cy7bxvm0b70uv" path="res://assets/HomeVideoBold-R90Dv.ttf" id="2_prrxl"]
+[ext_resource type="Shader" uid="uid://dxhen3wv2ytof" path="res://assets/other/CRT.gdshader" id="1_2p2pm"]
+[ext_resource type="FontFile" uid="uid://cws3a6byu1gb8" path="res://assets/other/HomeVideo-BLG6G.ttf" id="2_26ch2"]
+[ext_resource type="FontFile" uid="uid://cy7bxvm0b70uv" path="res://assets/other/HomeVideoBold-R90Dv.ttf" id="2_prrxl"]
 [ext_resource type="Script" uid="uid://b6omim6w53gr6" path="res://scripts/play.gd" id="3_xe6qx"]
 [ext_resource type="Script" uid="uid://b75ntvklu56k2" path="res://scripts/exit.gd" id="4_o063w"]
 [ext_resource type="Script" uid="uid://bjktux4vvo1rr" path="res://scripts/scoreVal.gd" id="5_83plf"]

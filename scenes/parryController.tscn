@@ -1,0 +1,203 @@
+[gd_scene load_steps=5 format=3 uid="uid://oulxmm2esxor"]
+
+[ext_resource type="Script" uid="uid://15nq0p753vww" path="res://scripts/parryController.gd" id="1_03lis"]
+[ext_resource type="Script" uid="uid://bad0ars7xpxhb" path="res://scripts/parrayWall.gd" id="2_hor30"]
+[ext_resource type="Texture2D" uid="uid://4amvf7i8vjg0" path="res://assets/sprites/player/parryWall.png" id="3_hor30"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_03lis"]
+radius = 5.08539
+height = 28.2728
+
+[node name="parryController" type="Node2D"]
+script = ExtResource("1_03lis")
+
+[node name="top" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -31)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_hor30")
+
+[node name="Sprite2D" type="Sprite2D" parent="top"]
+texture_filter = 1
+position = Vector2(-1.90735e-06, 0)
+texture = ExtResource("3_hor30")
+
+[node name="left" type="CollisionShape2D" parent="top"]
+position = Vector2(-11, 0)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="right" type="CollisionShape2D" parent="top"]
+position = Vector2(11, 0)
+rotation = 1.74533
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="bottom" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 31)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_hor30")
+
+[node name="Sprite2D" type="Sprite2D" parent="bottom"]
+texture_filter = 1
+position = Vector2(-1.90735e-06, 4.76837e-07)
+rotation = 3.14159
+texture = ExtResource("3_hor30")
+metadata/_edit_lock_ = true
+
+[node name="left" type="CollisionShape2D" parent="bottom"]
+position = Vector2(-11, 3.57628e-07)
+rotation = 1.74533
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="right" type="CollisionShape2D" parent="bottom"]
+position = Vector2(10, 0)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="left" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-31, 0)
+rotation = 1.5708
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_hor30")
+
+[node name="Sprite2D" type="Sprite2D" parent="left"]
+texture_filter = 1
+position = Vector2(-1.90735e-06, 4.76837e-07)
+rotation = 3.14159
+texture = ExtResource("3_hor30")
+metadata/_edit_lock_ = true
+
+[node name="left" type="CollisionShape2D" parent="left"]
+position = Vector2(-11, 3.57628e-07)
+rotation = 1.74533
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="right" type="CollisionShape2D" parent="left"]
+position = Vector2(10, 0)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="right" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(31, 0)
+rotation = 1.5708
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_hor30")
+
+[node name="Sprite2D" type="Sprite2D" parent="right"]
+texture_filter = 1
+position = Vector2(-1.90735e-06, 4.76837e-07)
+texture = ExtResource("3_hor30")
+metadata/_edit_lock_ = true
+
+[node name="left" type="CollisionShape2D" parent="right"]
+position = Vector2(-11, 0)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="right" type="CollisionShape2D" parent="right"]
+position = Vector2(11, 0)
+rotation = 1.74533
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="bottomRight" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(25, 25)
+rotation = 2.35619
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_hor30")
+
+[node name="Sprite2D" type="Sprite2D" parent="bottomRight"]
+texture_filter = 1
+position = Vector2(-1.90735e-06, 4.76837e-07)
+texture = ExtResource("3_hor30")
+metadata/_edit_lock_ = true
+
+[node name="left" type="CollisionShape2D" parent="bottomRight"]
+position = Vector2(-11, 0)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="right" type="CollisionShape2D" parent="bottomRight"]
+position = Vector2(11, 0)
+rotation = 1.74533
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="bottomLeft" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-25, 25)
+rotation = 3.92699
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_hor30")
+
+[node name="Sprite2D" type="Sprite2D" parent="bottomLeft"]
+texture_filter = 1
+position = Vector2(-1.90735e-06, 4.76837e-07)
+texture = ExtResource("3_hor30")
+metadata/_edit_lock_ = true
+
+[node name="left" type="CollisionShape2D" parent="bottomLeft"]
+position = Vector2(-11, 0)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="right" type="CollisionShape2D" parent="bottomLeft"]
+position = Vector2(11, 0)
+rotation = 1.74533
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="topRight" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(25, -25)
+rotation = 0.785398
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_hor30")
+
+[node name="Sprite2D" type="Sprite2D" parent="topRight"]
+texture_filter = 1
+position = Vector2(-1.90735e-06, 4.76837e-07)
+texture = ExtResource("3_hor30")
+metadata/_edit_lock_ = true
+
+[node name="left" type="CollisionShape2D" parent="topRight"]
+position = Vector2(-11, 0)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="right" type="CollisionShape2D" parent="topRight"]
+position = Vector2(11, 0)
+rotation = 1.74533
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="topLeft" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-25, -25)
+rotation = -0.785398
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_hor30")
+
+[node name="Sprite2D" type="Sprite2D" parent="topLeft"]
+texture_filter = 1
+position = Vector2(-1.90735e-06, 4.76837e-07)
+texture = ExtResource("3_hor30")
+metadata/_edit_lock_ = true
+
+[node name="left" type="CollisionShape2D" parent="topLeft"]
+position = Vector2(-11, 0)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_03lis")
+
+[node name="right" type="CollisionShape2D" parent="topLeft"]
+position = Vector2(11, 0)
+rotation = 1.74533
+shape = SubResource("CapsuleShape2D_03lis")

@@ -55,5 +55,6 @@ func _physics_process(delta: float) -> void:
 	
 	# start spawning bullets if stopped
 	if !isStopped && (stopPosition - boss.global_position).length() <= 3:
+		boss.global_position = stopPosition
 		isStopped = true
 		%bulletTimer.start()

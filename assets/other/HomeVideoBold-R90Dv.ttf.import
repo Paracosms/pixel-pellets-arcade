@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cy7bxvm0b70uv"
-path="res://.godot/imported/HomeVideoBold-R90Dv.ttf-05f9b1ac21edb3f023edc7c523801f64.fontdata"
+path="res://.godot/imported/HomeVideoBold-R90Dv.ttf-360b9e39deb65864bad3cc7508386c25.fontdata"
 
 [deps]
 
-source_file="res://assets/HomeVideoBold-R90Dv.ttf"
-dest_files=["res://.godot/imported/HomeVideoBold-R90Dv.ttf-05f9b1ac21edb3f023edc7c523801f64.fontdata"]
+source_file="res://assets/other/HomeVideoBold-R90Dv.ttf"
+dest_files=["res://.godot/imported/HomeVideoBold-R90Dv.ttf-360b9e39deb65864bad3cc7508386c25.fontdata"]
 
 [params]
 

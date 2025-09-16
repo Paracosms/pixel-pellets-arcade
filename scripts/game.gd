@@ -35,6 +35,7 @@ func reset():
 	hurtLogicComponent.reset()
 
 func _ready():
+	Globals.baseResolution = DisplayServer.window_get_size()
 	get_node("sfxPlayer").play()
 	%player.connect("damagePlayer", hurt)
 	hurtLogicComponent.connect("displayDeathScreen", displayDeathScreen)

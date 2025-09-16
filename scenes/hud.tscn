@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ctnr7wplmfgd0"]
 
-[ext_resource type="FontFile" uid="uid://cws3a6byu1gb8" path="res://assets/HomeVideo-BLG6G.ttf" id="1_fsab8"]
+[ext_resource type="FontFile" uid="uid://cws3a6byu1gb8" path="res://assets/other/HomeVideo-BLG6G.ttf" id="1_fsab8"]
 [ext_resource type="Script" uid="uid://dcgt3tsfki464" path="res://scripts/scoreUpdater.gd" id="1_tjgkx"]
 [ext_resource type="Script" uid="uid://81j3oxiafjh0" path="res://scripts/hud.gd" id="1_uo2fv"]
 [ext_resource type="Script" uid="uid://deobv0aofyls" path="res://scripts/resolutionUpdater.gd" id="3_xw8sq"]

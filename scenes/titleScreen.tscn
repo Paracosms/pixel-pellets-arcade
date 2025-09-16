@@ -1,36 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3m02k65lw82j"]
+[gd_scene load_steps=13 format=3 uid="uid://b3m02k65lw82j"]
 
-[ext_resource type="Shader" uid="uid://dxhen3wv2ytof" path="res://assets/CRT.gdshader" id="1_1x8ta"]
+[ext_resource type="Shader" uid="uid://dxhen3wv2ytof" path="res://assets/other/CRT.gdshader" id="1_1x8ta"]
+[ext_resource type="Shader" uid="uid://4ewpa1uq1ogf" path="res://assets/other/chroma.gdshader" id="1_cqrvj"]
+[ext_resource type="Texture2D" uid="uid://vi3omnpnuw40" path="res://assets/sprites/stationary/background.png" id="2_a2ocw"]
 [ext_resource type="PackedScene" uid="uid://bqc63v8ukgfmg" path="res://scenes/walls.tscn" id="2_sto8h"]
-[ext_resource type="FontFile" uid="uid://cws3a6byu1gb8" path="res://assets/HomeVideo-BLG6G.ttf" id="3_7s7rv"]
-[ext_resource type="FontFile" uid="uid://cy7bxvm0b70uv" path="res://assets/HomeVideoBold-R90Dv.ttf" id="3_d8s0n"]
+[ext_resource type="FontFile" uid="uid://cws3a6byu1gb8" path="res://assets/other/HomeVideo-BLG6G.ttf" id="3_7s7rv"]
+[ext_resource type="FontFile" uid="uid://cy7bxvm0b70uv" path="res://assets/other/HomeVideoBold-R90Dv.ttf" id="3_d8s0n"]
 [ext_resource type="Script" uid="uid://b6omim6w53gr6" path="res://scripts/play.gd" id="4_hk15p"]
 [ext_resource type="Script" uid="uid://bbx0o3cvm37f5" path="res://scripts/quit.gd" id="5_vk6tc"]
 [ext_resource type="PackedScene" uid="uid://cbur51jx6mord" path="res://scenes/attack2.tscn" id="6_dtbgo"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ek4de"]
-shader = ExtResource("1_1x8ta")
-shader_parameter/overlay = false
-shader_parameter/scanlines_opacity = 0.4
-shader_parameter/scanlines_width = 0.25
-shader_parameter/grille_opacity = 0.3
-shader_parameter/resolution = Vector2(640, 480)
-shader_parameter/pixelate = true
-shader_parameter/roll = true
-shader_parameter/roll_speed = 8.0
-shader_parameter/roll_size = 15.0
-shader_parameter/roll_variation = 1.8
-shader_parameter/distort_intensity = 0.05
-shader_parameter/noise_opacity = 0.4
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06
-shader_parameter/aberration = 0.03
-shader_parameter/brightness = 1.4
-shader_parameter/discolor = true
-shader_parameter/warp_amount = 1.0
-shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqrvj"]
+shader = ExtResource("1_cqrvj")
+shader_parameter/speed = 0.05
+shader_parameter/amount = 1.0
+shader_parameter/rainbow_scale = 0.0
+shader_parameter/rainbow_scroll = 0.2
+shader_parameter/chroma_gain = 1.8
+shader_parameter/min_saturation = 0.15
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx5d4"]
 size = Vector2(1622, 162)
@@ -59,18 +46,17 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
-[node name="titleScreen" type="Control"]
-material = SubResource("ShaderMaterial_ek4de")
+[node name="titleScreen" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_right = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Container" type="CenterContainer" parent="."]
+[node name="Container" type="CenterContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,15 +64,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HELPEPLPLEPL" type="AspectRatioContainer" parent="Container"]
+[node name="background" type="TextureRect" parent="Control/Container"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_cqrvj")
 layout_mode = 2
-ratio = 1.7778
+texture = ExtResource("2_a2ocw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container/HELPEPLPLEPL"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Container"]
 layout_mode = 2
 theme_override_constants/separation = 600
 
-[node name="title" type="Label" parent="Container/HELPEPLPLEPL/VBoxContainer"]
+[node name="title" type="Label" parent="Control/Container/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_d8s0n")
@@ -95,22 +84,21 @@ text = " Pixel Pellets "
 horizontal_alignment = 3
 vertical_alignment = 3
 
-[node name="titleWall" type="StaticBody2D" parent="Container/HELPEPLPLEPL/VBoxContainer/title"]
-position = Vector2(-150.5, -61)
+[node name="titleWall" type="StaticBody2D" parent="Control/Container/VBoxContainer/title"]
 collision_layer = 16
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/HELPEPLPLEPL/VBoxContainer/title/titleWall"]
-position = Vector2(961, 142)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Container/VBoxContainer/title/titleWall"]
+position = Vector2(810, 81)
 shape = SubResource("RectangleShape2D_mx5d4")
 
-[node name="buttonPanel" type="Panel" parent="Container/HELPEPLPLEPL/VBoxContainer"]
+[node name="buttonPanel" type="Panel" parent="Control/Container/VBoxContainer"]
 custom_minimum_size = Vector2(700, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="quit" type="Button" parent="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel"]
+[node name="quit" type="Button" parent="Control/Container/VBoxContainer/buttonPanel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -129,7 +117,7 @@ action_mode = 0
 text = "QUIT"
 script = ExtResource("5_vk6tc")
 
-[node name="play" type="Button" parent="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel"]
+[node name="play" type="Button" parent="Control/Container/VBoxContainer/buttonPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -146,39 +134,38 @@ text = "PLAY
 "
 script = ExtResource("4_hk15p")
 
-[node name="attack2" parent="." instance=ExtResource("6_dtbgo")]
-
-[node name="walls" parent="." instance=ExtResource("2_sto8h")]
+[node name="walls" parent="Control" instance=ExtResource("2_sto8h")]
 position = Vector2(-20, -20)
 
-[node name="crtShader" type="ColorRect" parent="."]
+[node name="attack2" parent="Control" instance=ExtResource("6_dtbgo")]
+position = Vector2(960, 500)
+
+[node name="crtShader" type="ColorRect" parent="Control"]
 material = SubResource("ShaderMaterial_bnmuo")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -5.0
-offset_right = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="creator" type="Label" parent="."]
+[node name="creator" type="Label" parent="Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -20.0
-offset_right = 186.0
-offset_bottom = -6.0
+offset_left = 5.0
+offset_top = -19.0
+offset_right = 185.0
+offset_bottom = -5.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_7s7rv")
 theme_override_font_sizes/font_size = 15
 text = "@paracosms [itch.io]"
 
-[node name="version" type="Label" parent="."]
+[node name="version" type="Label" parent="Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 3
@@ -186,17 +173,17 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -97.0
-offset_top = -31.0
-offset_right = 24.0
-offset_bottom = -7.0
+offset_left = -77.0
+offset_top = -23.0
+offset_right = -5.0
+offset_bottom = -5.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_7s7rv")
 theme_override_font_sizes/font_size = 20
-text = "v1.2.0"
+text = "v1.1.1"
 
-[connection signal="mouse_entered" from="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel/quit" to="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel/quit" method="_on_mouse_entered"]
-[connection signal="pressed" from="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel/quit" to="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel/quit" method="_on_pressed"]
-[connection signal="mouse_entered" from="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel/play" to="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel/quit" method="_on_mouse_entered"]
-[connection signal="pressed" from="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel/play" to="Container/HELPEPLPLEPL/VBoxContainer/buttonPanel/play" method="_on_pressed"]
+[connection signal="mouse_entered" from="Control/Container/VBoxContainer/buttonPanel/quit" to="Control/Container/VBoxContainer/buttonPanel/quit" method="_on_mouse_entered"]
+[connection signal="pressed" from="Control/Container/VBoxContainer/buttonPanel/quit" to="Control/Container/VBoxContainer/buttonPanel/quit" method="_on_pressed"]
+[connection signal="mouse_entered" from="Control/Container/VBoxContainer/buttonPanel/play" to="Control/Container/VBoxContainer/buttonPanel/quit" method="_on_mouse_entered"]
+[connection signal="pressed" from="Control/Container/VBoxContainer/buttonPanel/play" to="Control/Container/VBoxContainer/buttonPanel/play" method="_on_pressed"]

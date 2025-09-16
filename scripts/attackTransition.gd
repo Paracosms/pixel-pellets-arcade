@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var attack2 = preload("res://scenes/attack2.tscn")
 
 # change texture
-@onready var pinkTexture = preload("res://assets/sprites/bulletPink.png")
+@onready var pinkTexture = preload("res://assets/sprites/unused/bulletPink.png")
 
 var transitioningTo : int
 
