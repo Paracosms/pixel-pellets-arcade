@@ -181,7 +181,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_7s7rv")
 theme_override_font_sizes/font_size = 20
-text = "v1.1.1"
+text = "v1.1.2"
 
 [connection signal="mouse_entered" from="Control/Container/VBoxContainer/buttonPanel/quit" to="Control/Container/VBoxContainer/buttonPanel/quit" method="_on_mouse_entered"]
 [connection signal="pressed" from="Control/Container/VBoxContainer/buttonPanel/quit" to="Control/Container/VBoxContainer/buttonPanel/quit" method="_on_pressed"]

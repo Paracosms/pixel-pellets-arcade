@@ -29,13 +29,15 @@ func _physics_process(delta: float) -> void:
 func swapToParriedBullet():
 	Globals.playSound(parrySound, -5)
 	# parried bullets die after bouncing off the wall
-	timesBounced = Globals.bulletBouncesBeforeDeath - 1
+	#timesBounced = Globals.bulletBouncesBeforeDeath - 1
+	timesBounced = -3
 	# enable the bullet to deal damage to the boss, disable the ability to do damage to player
 	get_node("parriedHurtBox/canHurtBossArea").disabled = false
 	
+	# TODO I REALLY NEED TO FIX THE README
 	
 	# change bullet attributes
 	add_to_group("parriedBullet")
-	velocity *= 1.5
+	velocity *= 3
 	scale = Vector2(2,2)
 	get_node("bulletSprite").material = parriedBulletShader
