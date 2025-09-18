@@ -4,7 +4,7 @@ Pixel Pellets Arcade is a bullet hell boss rush game. Bosses will shoot at you, 
 ---
 ## Don't get hit, or your resolution will decrease!
 The core feature of this game revolves around changing your screen size dynamically as you play. If you get hit, your resolution decreases.
-![Resolution Change Mechanic](.assets/readme/resolutionChange.gif)
+![Resolution Change Mechanic](./assets/readme/resolutionChange.gif)
 
 ## More to come soon!
 
