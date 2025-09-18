@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0ldbd3aooyha"]
+
+[ext_resource type="Script" uid="uid://6nvh7g5i3gfl" path="res://scenes/bosses/boss3/atk0.gd" id="1_vhugn"]
+
+[node name="Atk0" type="Node" groups=["phaseNode"]]
+script = ExtResource("1_vhugn")
+
+[node name="bulletTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="bulletTimer" to="." method="spawnBullets"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfuph2av61m5y"]
+[gd_scene load_steps=7 format=3 uid="uid://bfuph2av61m5y"]
 
 [ext_resource type="Script" uid="uid://c00tbbdi1ym1o" path="res://scenes/bosses/boss2/boss2.gd" id="1_t20g5"]
 [ext_resource type="Texture2D" uid="uid://dit0jmkuifjah" path="res://assets/sprites/bosses/boss2.png" id="2_njrkb"]
 [ext_resource type="PackedScene" uid="uid://b8kw106e5lhr8" path="res://scenes/bosses/boss2/atk0.tscn" id="3_njrkb"]
+[ext_resource type="Script" uid="uid://e5mrh5rp4ajh" path="res://scenes/bosses/boss2/atk0.gd" id="4_o4f2f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_njrkb"]
 size = Vector2(32, 82)
@@ -34,6 +35,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="Atk0" parent="." instance=ExtResource("3_njrkb")]
+script = ExtResource("4_o4f2f")
 
 [connection signal="area_entered" from="hurtPlayer" to="." method="_on_hurt_player_area_entered"]
 [connection signal="timeout" from="transitionTimer" to="." method="transition"]

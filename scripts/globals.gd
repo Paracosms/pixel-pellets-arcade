@@ -8,6 +8,8 @@ var bulletBouncesBeforeDeath = 3
 var currentResolution : Vector2 = baseResolution
 var scaleFactors = [320.0/427, 427.0/640, 2.0/3, 1]
 var playerPos = Vector2.ZERO
+var currentBullets = []
+var parryVelocity = Vector2(300,300)
 
 func playSound(sound : AudioStream, volume : float = 0.0) -> void:
 	var soundPlayer = AudioStreamPlayer.new()

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dst6bhkoi0vmr"]
+
+[ext_resource type="Script" uid="uid://3j8sg2bejl43" path="res://scenes/bosses/boss0/boss0.gd" id="1_suhfa"]
+[ext_resource type="Texture2D" uid="uid://dit0jmkuifjah" path="res://assets/sprites/bosses/boss2.png" id="2_c8ujj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swlq1"]
+size = Vector2(26, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njrkb"]
+size = Vector2(32, 82)
+
+[node name="boss0" type="CharacterBody2D" node_paths=PackedStringArray("phase") groups=["boss"]]
+collision_layer = 4
+script = ExtResource("1_suhfa")
+phase = NodePath("REPLACE WITH ATK0")
+
+[node name="hurtbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_swlq1")
+
+[node name="hurtPlayer" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="hurtZone" type="CollisionShape2D" parent="hurtPlayer"]
+shape = SubResource("RectangleShape2D_njrkb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_c8ujj")
+
+[node name="transitionTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="REPLACE WITH ATK0" type="Node" parent="."]
+
+[connection signal="area_entered" from="hurtPlayer" to="." method="_on_hurt_player_area_entered"]
+[connection signal="timeout" from="transitionTimer" to="." method="transition"]

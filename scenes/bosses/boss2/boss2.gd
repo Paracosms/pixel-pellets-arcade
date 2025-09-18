@@ -12,13 +12,16 @@ extends CharacterBody2D
 var isLookingAtPlayer : bool = false
 var isMoving : bool = false
 var currentPhaseIndex : int
+var transitionAtHealthPercent = [75, 50, 25] # the boss will force a transition at 75%, 50% and 25% respectively, no matter what
 
 func takeDamage():
 	Globals.bossHealth -= 1
-	if Globals.bossHealth == health * 0.75 || Globals.bossHealth == health * 0.50 || Globals.bossHealth == health * 0.25 :
-		transition()
 	if Globals.bossHealth == 0:
 		queue_free()
+	
+	for percent in transitionAtHealthPercent:
+		if (Globals.bossHealth == health * percent * 0.01):
+			transition()
 
 func _ready() -> void:
 	Globals.bossHealth = health # number of bullets before death

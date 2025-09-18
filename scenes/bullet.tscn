@@ -40,9 +40,4 @@ script = ExtResource("3_l5glv")
 [node name="canHurtBossArea" type="CollisionShape2D" parent="parriedHurtBox"]
 shape = SubResource("RectangleShape2D_eoqba")
 
-[node name="recentlyParried" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.5
-one_shot = true
-
 [connection signal="body_entered" from="parriedHurtBox" to="parriedHurtBox" method="_on_body_entered"]
