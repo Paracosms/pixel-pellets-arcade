@@ -15,7 +15,6 @@ extends CharacterBody2D
 @export var health : int = 50
 @export var phase : Node # current atk phase
 var isLookingAtPlayer : bool = false
-var isMoving : bool = false
 var currentPhaseIndex : int
 var transitionAtHealthPercent = [75, 50, 25] # the boss will force a transition at 75%, 50% and 25% respectively, no matter what
 
@@ -32,15 +31,15 @@ func _ready() -> void:
 	Globals.bossHealth = health # number of bullets before death
 	Globals.maxBossHealth = health
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# getMovementPattern updates variables here that the boss can execute
 	phase.getMovementPattern()
 	
 	if isLookingAtPlayer:
 		look_at(Globals.playerPos)
-	if isMoving:
-		velocity = phase.getVelocity()
-		move_and_slide()
+	
+	velocity = phase.getVelocity()
+	move_and_slide()
 
 func transition():
 	var phaseIndex = randi_range(0, phaseScenes.size() - 1)

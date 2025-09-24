@@ -11,6 +11,11 @@ var playerPos = Vector2.ZERO
 var currentBullets = []
 var parryVelocity = Vector2(300,300)
 
+signal backgroundHueUpdated(newHue : float)
+
+func changeBackgroundHue(newHue : float):
+	emit_signal("backgroundHueUpdated", newHue)
+
 func playSound(sound : AudioStream, volume : float = 0.0) -> void:
 	var soundPlayer = AudioStreamPlayer.new()
 	add_child(soundPlayer)

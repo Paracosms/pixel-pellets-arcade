@@ -1,31 +1,41 @@
-### This attack moves the boss to the center and shoots 3 waves of bullets from each of its corners
+### This attack moves the boss near the top of the screen and moves left and right raining down triangle "raindrops"
 
 extends Node
 
-@export var SPEED : int = 200
+@export var SPEED : int = 100
 @export var BULLETSPEED : int = 150
 
 @onready var bulletScene = preload("res://scenes/bullet.tscn")
 @onready var boss = get_parent()
+@onready var stopPosition : Vector2 = Vector2(boss.global_position.x, 50)
 
 var timeAlive : float = 0
-var stopPosition : Vector2 = Vector2(1920/2.0, 1080/2.0)
 var isStopped : bool = false
-var finalRotation : float
-var rotating : bool
+var rotating : bool = true
+var direction : int
+var finalRotation : float = PI/2 
+
 
 func _ready() -> void:
-	boss.currentPhaseIndex = 0
-
+	boss.currentPhaseIndex = 1
+	boss.rotation = 0
+	# if Globals.playerPos.x - boss.global_position.x is negative, the boss is to the right of the player, therefore it should move left towards it
+	if (Globals.playerPos.x - boss.global_position.x) < 0:
+		direction = -1 # move to the left
+	else:
+		direction = 1 # move to the left
+		
 func getMovementPattern():
 	boss.isLookingAtPlayer = false
 
 func getVelocity() -> Vector2:
-	if boss.global_position == stopPosition:
-		return Vector2.ZERO
+	# direction is always final pos - initial pos
+	if direction == -1 :
+		# player is on the left; move left
+		return Vector2(-1,0) * SPEED
 	else:
-		boss.rotation += PI/180
-		return (stopPosition - boss.global_position).normalized() * SPEED
+		# player is on the right; move right
+		return Vector2(1,0) * SPEED
 
 func spawnBullet(angle):
 	var bullet = bulletScene.instantiate()
@@ -34,7 +44,7 @@ func spawnBullet(angle):
 	var angleVector = Vector2(cos(angle), sin(angle))
 	
 	# sets individual bullet properties
-	bullet.timesBounced = 0
+	bullet.timesBounced = Globals.bulletBouncesBeforeDeath - 2
 	bullet.position = boss.global_position # position of the spawner
 	bullet.rotation = angle
 	bullet.velocity = angleVector * BULLETSPEED
@@ -62,7 +72,6 @@ func attack():
 	await get_tree().create_timer(0.5).timeout # cooldown before it rotates again
 	%rotateTransitionTimer.start()
 	finalRotation = boss.rotation + PI/3
-	rotating = true
 
 func updateBulletVelocities():
 	var periodicFunction = -asin(cos(cos(timeAlive))) + 2.2
@@ -74,18 +83,24 @@ func updateBulletVelocities():
 		bulletNode.velocity = bulletNode.baseVelocity * velocityMultiplier
 
 func _physics_process(delta: float) -> void:
+	
 	timeAlive += delta
 	updateBulletVelocities()
 	
-	# 3 is picked here because apparently thats the closest it gets to being on top of stopPosition
-	# start spawning bullets if stopped
+	# if the boss hits a wall, turn around
+	if boss.position.x > 1920 || boss.position.x < 0:
+		direction *= -1
+	
+	# start spawning bullets once end position reached
 	if !isStopped && (stopPosition - boss.global_position).length() <= 3:
 		boss.global_position = stopPosition
 		isStopped = true
+		
+	if (stopPosition - boss.global_position).length() <= 3:
 		attack()
+		
 	
 	if (rotating && boss.rotation < finalRotation):
-		boss.rotation += PI/180
-		#Globals.debug(5 - %rotateTimer.time_left)
+		boss.rotation -= PI/180
 	else:
 		rotating = false

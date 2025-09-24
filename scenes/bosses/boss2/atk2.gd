@@ -21,7 +21,6 @@ func _ready() -> void:
 
 # run and look at the player
 func getMovementPattern():
-	boss.isMoving = true
 	boss.isLookingAtPlayer = false
 
 func getVelocity() -> Vector2:

@@ -10,7 +10,6 @@ extends CharacterBody2D
 @export var health : int = 50
 @export var phase : Node
 var isLookingAtPlayer : bool = false
-var isMoving : bool = false
 var currentPhaseIndex : int
 var transitionAtHealthPercent = [75, 50, 25] # the boss will force a transition at 75%, 50% and 25% respectively, no matter what
 
@@ -27,7 +26,7 @@ func _ready() -> void:
 	Globals.bossHealth = health # number of bullets before death
 	Globals.maxBossHealth = health
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	#print("boss 2 physics function: global player pos - global boss pos = " + str(Globals.playerPos.x - global_position.x))
 	
@@ -36,9 +35,8 @@ func _physics_process(delta: float) -> void:
 	
 	if isLookingAtPlayer:
 		look_at(Globals.playerPos)
-	if isMoving:
-		velocity = phase.getVelocity()
-		move_and_slide()
+	velocity = phase.getVelocity()
+	move_and_slide()
 
 func transition():
 	var phaseIndex = randi_range(0, phaseScenes.size() - 1)
@@ -54,5 +52,5 @@ func transition():
 	phase = nextPhase
 	add_child(phase)
 
-func _on_hurt_player_area_entered(area: Area2D) -> void:
+func _on_hurt_player_area_entered(_area: Area2D) -> void:
 	get_tree().call_group("game", "kill")

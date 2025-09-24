@@ -7,7 +7,7 @@ extends Node
 @onready var bulletScene = preload("res://scenes/bullet.tscn")
 @onready var boss = get_parent()
 
-var stopPosition : Vector2 = Vector2(1920/2,1080/2)
+var stopPosition : Vector2 = Vector2(1920/2.0,1080/2.0)
 var isStopped : bool = false
 var dontShoot : bool = true
 
@@ -16,7 +16,6 @@ func _ready() -> void:
 
 # run and look at the player
 func getMovementPattern():
-	boss.isMoving = true
 	boss.isLookingAtPlayer = false
 
 func getVelocity() -> Vector2:
@@ -30,8 +29,6 @@ func getVelocity() -> Vector2:
 func spawnBullets():
 	var angles = [0, PI/4, PI/2, 3*PI/4, PI, 5*PI/4, 3*PI/2, 7*PI/4] # omg unit circle
 	# how far from the enemy should the bullets spawn
-	var offset = 5
-	
 	# for each angle in angles[], spawn an individualized bullet using that angle value
 	for angle in angles:
 		var bullet = bulletScene.instantiate()
@@ -39,7 +36,6 @@ func spawnBullets():
 		
 		# cos to get x vector, sin to get y vector
 		var angleVector = Vector2(cos(angle), sin(angle))
-		var angularOffset = angleVector * offset
 		
 		# sets individual bullet properties
 		bullet.timesBounced = Globals.bulletBouncesBeforeDeath - 2
@@ -48,7 +44,7 @@ func spawnBullets():
 		bullet.velocity = angleVector * BULLETSPEED
 		bullet.name = "bullet"
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# 3 is picked here because apparently thats the closest it gets to being on top of stopPosition
 	if (stopPosition - boss.global_position).length() <= 3:
 		boss.rotation += PI/180.0

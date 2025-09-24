@@ -1,14 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://ceuvl0ptruffr"]
+[gd_scene load_steps=13 format=3 uid="uid://ceuvl0ptruffr"]
 
 [ext_resource type="Script" uid="uid://dhrnt2pqtyfff" path="res://scripts/game.gd" id="1_2gh71"]
 [ext_resource type="PackedScene" uid="uid://bu3sn4a2qrts4" path="res://scenes/player.tscn" id="1_83vhq"]
 [ext_resource type="Texture2D" uid="uid://vi3omnpnuw40" path="res://assets/sprites/stationary/background.png" id="2_r3qtm"]
+[ext_resource type="Shader" uid="uid://ds176teoxrqbi" path="res://assets/other/hueShifter.gdshader" id="2_y52ck"]
 [ext_resource type="PackedScene" uid="uid://ctnr7wplmfgd0" path="res://scenes/hud.tscn" id="3_o4gpi"]
-[ext_resource type="PackedScene" uid="uid://bfuph2av61m5y" path="res://scenes/bosses/boss2/boss2.tscn" id="4_r3qtm"]
+[ext_resource type="Script" uid="uid://dgakh74y4pyaf" path="res://scripts/background.gd" id="4_p3dgq"]
+[ext_resource type="PackedScene" uid="uid://6g5lvrosphnm" path="res://scenes/bosses/boss3/boss3.tscn" id="4_r3qtm"]
 [ext_resource type="PackedScene" uid="uid://bqc63v8ukgfmg" path="res://scenes/walls.tscn" id="5_ux6jf"]
 [ext_resource type="PackedScene" uid="uid://cjdmy5j3f1oyw" path="res://scenes/death.tscn" id="7_6djru"]
 [ext_resource type="Script" uid="uid://dv6m2pfgtubgb" path="res://scripts/hurtLogicArcade.gd" id="8_0tnpc"]
 [ext_resource type="AudioStream" uid="uid://c6dnhkxe6ymw5" path="res://assets/audio/sfx/gameStart.wav" id="8_856uv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3dgq"]
+shader = ExtResource("2_y52ck")
+shader_parameter/hueShift = 0.0
+shader_parameter/amount = 1.0
 
 [node name="gameViewer" type="SubViewportContainer"]
 texture_filter = 1
@@ -48,15 +55,22 @@ grow_vertical = 2
 [node name="background" type="Sprite2D" parent="game/backgroundContainer"]
 z_index = -2
 texture_filter = 1
+material = SubResource("ShaderMaterial_p3dgq")
 texture = ExtResource("2_r3qtm")
+script = ExtResource("4_p3dgq")
 
 [node name="player" parent="game" instance=ExtResource("1_83vhq")]
 unique_name_in_owner = true
 position = Vector2(943, 824)
 
-[node name="boss2" parent="game" instance=ExtResource("4_r3qtm")]
+[node name="boss3" parent="game" instance=ExtResource("4_r3qtm")]
+position = Vector2(960, 540)
 
 [node name="hud" parent="game" instance=ExtResource("3_o4gpi")]
+offset_left = -17.0
+offset_top = -6.0
+offset_right = -17.0
+offset_bottom = -6.0
 
 [node name="walls" parent="game" instance=ExtResource("5_ux6jf")]
 

@@ -21,7 +21,6 @@ func _ready() -> void:
 
 # run and look at the player
 func getMovementPattern():
-	boss.isMoving = true
 	boss.isLookingAtPlayer = false
 
 func getVelocity() -> Vector2:
@@ -36,8 +35,6 @@ func getVelocity() -> Vector2:
 # bulletTimer holds how long it should wait before it calls spawnBullets
 func spawnBullets():
 	var angles = [0, PI] # horizontal
-	# how far from the enemy should the bullets spawn
-	var offset = 5
 	
 	# for each angle in angles[], spawn an individualized bullet using that angle value
 	for angle in angles:
@@ -46,7 +43,6 @@ func spawnBullets():
 		
 		# cos to get x vector, sin to get y vector
 		var angleVector = Vector2(cos(angle), sin(angle))
-		var angularOffset = angleVector * offset
 		
 		# sets individual bullet properties
 		bullet.position = boss.global_position # position of the spawner
@@ -54,7 +50,7 @@ func spawnBullets():
 		bullet.velocity = angleVector * BULLETSPEED
 		bullet.name = "bullet"
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# if the boss hits a wall, turn around
 	if boss.position.y > 1080 || boss.position.y < 0:
 		direction *= -1

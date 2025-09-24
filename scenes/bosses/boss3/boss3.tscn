@@ -1,32 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://6g5lvrosphnm"]
+[gd_scene load_steps=4 format=3 uid="uid://6g5lvrosphnm"]
 
 [ext_resource type="Script" uid="uid://4ed8yvwngn2x" path="res://scenes/bosses/boss3/boss3.gd" id="1_32pr7"]
-[ext_resource type="Texture2D" uid="uid://dit0jmkuifjah" path="res://assets/sprites/bosses/boss2.png" id="2_aghy7"]
+[ext_resource type="Texture2D" uid="uid://chxwhg0p4hmkb" path="res://assets/sprites/bosses/boss3.png" id="2_32pr7"]
 [ext_resource type="PackedScene" uid="uid://c0ldbd3aooyha" path="res://scenes/bosses/boss3/atk0.tscn" id="3_32pr7"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_swlq1"]
-size = Vector2(26, 76)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_njrkb"]
-size = Vector2(32, 82)
 
 [node name="boss3" type="CharacterBody2D" node_paths=PackedStringArray("phase") groups=["boss"]]
 collision_layer = 4
 script = ExtResource("1_32pr7")
 phase = NodePath("Atk0")
 
-[node name="hurtbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_swlq1")
+[node name="hurtbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -12)
+build_mode = 1
+polygon = PackedVector2Array(40, 35, 0, -34, -40, 35)
 
 [node name="hurtPlayer" type="Area2D" parent="."]
+position = Vector2(0, -12)
 collision_layer = 4
 
-[node name="hurtZone" type="CollisionShape2D" parent="hurtPlayer"]
-shape = SubResource("RectangleShape2D_njrkb")
+[node name="hurtzone" type="CollisionPolygon2D" parent="hurtPlayer"]
+build_mode = 1
+polygon = PackedVector2Array(43, 37, 0, -37, -43, 37)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_aghy7")
+position = Vector2(0, -15)
+rotation = 3.1415927
+texture = ExtResource("2_32pr7")
 
 [node name="transitionTimer" type="Timer" parent="."]
 wait_time = 10.0
