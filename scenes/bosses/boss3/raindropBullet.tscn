@@ -1,3 +1,57 @@
-[gd_scene format=3 uid="uid://d217pql3xqr8p"]
+[gd_scene load_steps=3 format=3 uid="uid://d217pql3xqr8p"]
 
-[node name="RaindropBullet" type="Node2D"]
+[ext_resource type="Script" uid="uid://8n2tfvyxr2qy" path="res://scenes/bosses/boss3/raindropBullet.gd" id="1_qsunu"]
+[ext_resource type="Texture2D" uid="uid://bwcs0cjl7p58j" path="res://assets/sprites/bosses/bulletSpawnpoint.png" id="2_iv2xa"]
+
+[node name="raindropBullet" type="Node2D"]
+script = ExtResource("1_qsunu")
+
+[node name="telegraphSpawnpoints" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="1" type="Sprite2D" parent="telegraphSpawnpoints"]
+visible = false
+texture_filter = 1
+position = Vector2(-22, 0)
+texture = ExtResource("2_iv2xa")
+
+[node name="2" type="Sprite2D" parent="telegraphSpawnpoints"]
+visible = false
+texture_filter = 1
+position = Vector2(-17, 18)
+texture = ExtResource("2_iv2xa")
+
+[node name="3" type="Sprite2D" parent="telegraphSpawnpoints"]
+visible = false
+texture_filter = 1
+position = Vector2(-9, 36)
+texture = ExtResource("2_iv2xa")
+
+[node name="4" type="Sprite2D" parent="telegraphSpawnpoints"]
+visible = false
+texture_filter = 1
+position = Vector2(0, 54)
+texture = ExtResource("2_iv2xa")
+
+[node name="5" type="Sprite2D" parent="telegraphSpawnpoints"]
+visible = false
+texture_filter = 1
+position = Vector2(9, 36)
+texture = ExtResource("2_iv2xa")
+
+[node name="6" type="Sprite2D" parent="telegraphSpawnpoints"]
+visible = false
+texture_filter = 1
+position = Vector2(17, 18)
+texture = ExtResource("2_iv2xa")
+
+[node name="7" type="Sprite2D" parent="telegraphSpawnpoints"]
+visible = false
+texture_filter = 1
+position = Vector2(22, 0)
+texture = ExtResource("2_iv2xa")
+
+[node name="8" type="Sprite2D" parent="telegraphSpawnpoints"]
+visible = false
+texture_filter = 1
+texture = ExtResource("2_iv2xa")

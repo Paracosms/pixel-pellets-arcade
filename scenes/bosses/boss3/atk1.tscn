@@ -5,15 +5,7 @@
 [node name="Atk1" type="Node" groups=["phaseNode"]]
 script = ExtResource("1_1cjyd")
 
-[node name="rotateTransitionTimer" type="Timer" parent="."]
+[node name="attackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 1.5
-autostart = true
 
-[node name="waveTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.3
-one_shot = true
-
-[connection signal="timeout" from="rotateTransitionTimer" to="." method="attack"]
-[connection signal="timeout" from="waveTimer" to="." method="spawnWave"]
+[connection signal="timeout" from="attackTimer" to="." method="attack"]
