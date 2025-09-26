@@ -16,6 +16,7 @@ var transitionAtHealthPercent = [75, 50, 25] # the boss will force a transition 
 func takeDamage():
 	Globals.bossHealth -= 1
 	if Globals.bossHealth == 0:
+		Globals.spawnNextBoss()
 		queue_free()
 	
 	for percent in transitionAtHealthPercent:
@@ -23,11 +24,11 @@ func takeDamage():
 			transition()
 
 func _ready() -> void:
+	Globals.currentBoss = 2
 	Globals.bossHealth = health # number of bullets before death
 	Globals.maxBossHealth = health
 
 func _physics_process(_delta: float) -> void:
-	
 	#print("boss 2 physics function: global player pos - global boss pos = " + str(Globals.playerPos.x - global_position.x))
 	
 	# getMovementPattern updates variables here that boss2 can execute
@@ -43,7 +44,7 @@ func transition():
 	while phaseIndex == currentPhaseIndex:
 		phaseIndex = randi_range(0, phaseScenes.size() - 1)
 	
-	# phaseIndex = 3 ### DEBUG, SET TEST PHASE HERE
+	# phaseIndex = 0 ### DEBUG, SET TEST PHASE HERE
 	
 	Globals.debug("transitioning to " + str(phaseIndex))
 	var nextPhase = phaseScenes[phaseIndex].instantiate()

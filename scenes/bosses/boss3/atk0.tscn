@@ -5,14 +5,9 @@
 [node name="Atk0" type="Node" groups=["phaseNode"]]
 script = ExtResource("1_vhugn")
 
-[node name="rotateTransitionTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 1.5
-
 [node name="waveTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
-[connection signal="timeout" from="rotateTransitionTimer" to="." method="attack"]
 [connection signal="timeout" from="waveTimer" to="." method="spawnWave"]

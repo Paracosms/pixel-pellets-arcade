@@ -7,5 +7,6 @@ script = ExtResource("1_1cjyd")
 
 [node name="attackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 0.6
 
 [connection signal="timeout" from="attackTimer" to="." method="attack"]

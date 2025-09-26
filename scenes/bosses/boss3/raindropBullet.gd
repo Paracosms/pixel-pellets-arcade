@@ -4,6 +4,7 @@ extends Node2D
 @export var flashesBeforeFalling : int = 2
 @export var timeBetweenFlashes : float = 0.3
 @export var BULLETSPEED : int = 400
+@export var bulletDirection : Vector2
 
 @onready var bulletScene = preload("res://scenes/bullet.tscn")
 
@@ -47,7 +48,7 @@ func _ready() -> void:
 	
 	# make the raindrop fall
 	for bullet in bullets:
-		bullet.velocity = Vector2(0, 1) * BULLETSPEED
+		bullet.velocity = bulletDirection * BULLETSPEED
 
 func _physics_process(_delta: float) -> void:
 	if bullets.is_empty():

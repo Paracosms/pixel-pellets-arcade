@@ -6,8 +6,8 @@
 [ext_resource type="Shader" uid="uid://ds176teoxrqbi" path="res://assets/other/hueShifter.gdshader" id="2_y52ck"]
 [ext_resource type="PackedScene" uid="uid://ctnr7wplmfgd0" path="res://scenes/hud.tscn" id="3_o4gpi"]
 [ext_resource type="Script" uid="uid://dgakh74y4pyaf" path="res://scripts/background.gd" id="4_p3dgq"]
-[ext_resource type="PackedScene" uid="uid://6g5lvrosphnm" path="res://scenes/bosses/boss3/boss3.tscn" id="4_r3qtm"]
 [ext_resource type="PackedScene" uid="uid://bqc63v8ukgfmg" path="res://scenes/walls.tscn" id="5_ux6jf"]
+[ext_resource type="PackedScene" uid="uid://bfuph2av61m5y" path="res://scenes/bosses/boss2/boss2.tscn" id="6_p3dgq"]
 [ext_resource type="PackedScene" uid="uid://cjdmy5j3f1oyw" path="res://scenes/death.tscn" id="7_6djru"]
 [ext_resource type="Script" uid="uid://dv6m2pfgtubgb" path="res://scripts/hurtLogicArcade.gd" id="8_0tnpc"]
 [ext_resource type="AudioStream" uid="uid://c6dnhkxe6ymw5" path="res://assets/audio/sfx/gameStart.wav" id="8_856uv"]
@@ -63,8 +63,7 @@ script = ExtResource("4_p3dgq")
 unique_name_in_owner = true
 position = Vector2(943, 824)
 
-[node name="boss3" parent="game" instance=ExtResource("4_r3qtm")]
-position = Vector2(960, 540)
+[node name="boss2" parent="game" instance=ExtResource("6_p3dgq")]
 
 [node name="hud" parent="game" instance=ExtResource("3_o4gpi")]
 offset_left = -17.0

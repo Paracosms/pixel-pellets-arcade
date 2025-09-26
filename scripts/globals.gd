@@ -10,8 +10,24 @@ var scaleFactors = [320.0/427, 427.0/640, 2.0/3, 1]
 var playerPos = Vector2.ZERO
 var currentBullets = []
 var parryVelocity = Vector2(300,300)
+var currentBoss = 0
+
+var score = 0 # remove later, outdated feature
+
+@onready var bossScenes = [
+	null,
+	null,
+	preload("res://scenes/bosses/boss2/boss2.tscn"),
+	preload("res://scenes/bosses/boss3/boss3.tscn")
+]
 
 signal backgroundHueUpdated(newHue : float)
+
+func spawnNextBoss():
+	currentBoss += 1
+	var nextBoss = bossScenes[currentBoss].instantiate()
+	nextBoss.position = Vector2(1920/2.0, 1080/2.0)
+	get_node("/root/Window/gameViewer/game").add_child(nextBoss)
 
 func changeBackgroundHue(newHue : float):
 	emit_signal("backgroundHueUpdated", newHue)

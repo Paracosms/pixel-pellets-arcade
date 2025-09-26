@@ -53,19 +53,29 @@ func spawnWave():
 	for angle in angles:
 			spawnBullet(angle + boss.rotation)
 
+
 # spawn 3 waves of bullets, rotate, spawn 3 waves of bullets
-func attack():
-	for i in 3:
-		%waveTimer.start()
-		await %waveTimer.timeout # spawns wave
-	
-	await get_tree().create_timer(0.5).timeout # cooldown before it rotates again
-	%rotateTransitionTimer.start()
-	finalRotation = boss.rotation + PI/3
-	rotating = true
+func loopAttack():
+	while(true):
+		for i in 3:
+			%waveTimer.start()
+			await %waveTimer.timeout # spawns wave
+		
+		await get_tree().create_timer(0.3).timeout # cooldown before it rotates again
+		
+		# rotation goes from -pi to pi
+		if (boss.rotation + PI/3) > PI:
+			finalRotation = boss.rotation + PI/3 - 2*PI
+		else:
+			finalRotation = boss.rotation + PI/3
+		
+		
+		while abs(boss.rotation - finalRotation) > 0.01:
+			await get_tree().physics_frame
+			boss.rotation += PI/120
 
 func updateBulletVelocities():
-	var periodicFunction = -asin(cos(cos(timeAlive))) + 2.2
+	var periodicFunction = -asin(cos(cos(timeAlive))) + 3.2 
 	var velocityMultiplier = Vector2(periodicFunction, periodicFunction)
 	
 	Globals.currentBullets = Globals.currentBullets.filter(func(n): return is_instance_valid(n) and !(n is Node and n.is_queued_for_deletion()))
@@ -82,10 +92,4 @@ func _physics_process(delta: float) -> void:
 	if !isStopped && (stopPosition - boss.global_position).length() <= 3:
 		boss.global_position = stopPosition
 		isStopped = true
-		attack()
-	
-	if (rotating && boss.rotation < finalRotation):
-		boss.rotation += PI/180
-		#Globals.debug(5 - %rotateTimer.time_left)
-	else:
-		rotating = false
+		loopAttack()

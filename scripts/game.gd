@@ -2,8 +2,6 @@ extends SubViewport
 
 @onready var gameStartSound = preload("res://assets/audio/sfx/gameStart.wav")
 
-# global variable location
-@export var score: int = 0
 @export var hurtLogicComponent: Node;
 
 var playerAlive = true
@@ -41,7 +39,7 @@ func _ready():
 	hurtLogicComponent.connect("displayDeathScreen", displayDeathScreen)
 	reset()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	Globals.baseResolution = DisplayServer.window_get_size()
 	if playerAlive:
 		Globals.playerPos = %player.position

@@ -17,7 +17,7 @@ func get_input():
 	return input.normalized()
 
 # calculate movement and move the player
-func player_movement(delta):
+func player_movement(_delta):
 	velocity = get_input() * SPEED
 	move_and_slide()
 
@@ -32,8 +32,9 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if !body.is_in_group("parriedBullet"):
 		emit_signal("damagePlayer")
 
-func _on_grazebox_area_entered(area: Area2D) -> void:
-	# TODO: add more functionality here
+func _on_grazebox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("parriedBullet"): return
 	### idea: graze to get resolution back?
+	
 	Globals.playSound(grazeSound, -5)
-	get_parent().score += 10
+	Globals.score += 10

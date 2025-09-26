@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8kw106e5lhr8"]
 
-[ext_resource type="Script" uid="uid://df5g3gq1viaki" path="res://scenes/bosses/boss0/atk0.gd" id="1_rntwo"]
+[ext_resource type="Script" uid="uid://e5mrh5rp4ajh" path="res://scenes/bosses/boss2/atk0.gd" id="1_rntwo"]
 
 [node name="Atk0" type="Node" groups=["phaseNode"]]
 script = ExtResource("1_rntwo")

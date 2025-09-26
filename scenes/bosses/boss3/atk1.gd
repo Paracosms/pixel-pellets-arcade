@@ -2,7 +2,7 @@
 
 extends Node
 
-@export var SPEED : int = 100
+@export var SPEED : int = 300
 @export var BULLETSPEED : int = 150
 
 @onready var bulletScene = preload("res://scenes/bullet.tscn")
@@ -30,7 +30,7 @@ func getMovementPattern():
 
 func getVelocity() -> Vector2:
 	if boss.global_position.y != stopPosition.y:
-		return (stopPosition - boss.global_position).normalized() * SPEED * 5
+		return (stopPosition - boss.global_position).normalized() * SPEED * 2
 	
 	
 	# direction is always final pos - initial pos
@@ -44,9 +44,9 @@ func getVelocity() -> Vector2:
 # spawn 3 waves of bullets, rotate, spawn 3 waves of bullets
 func attack():
 	var raindrop = raindropAttackScene.instantiate()
-	raindrop.position = boss.position
+	raindrop.position = boss.position + Vector2(0, 50) # 50 pixels below the boss for offset
+	raindrop.bulletDirection = Vector2(0,1)
 	boss.get_parent().add_child(raindrop)
-	Globals.debug(raindrop)
 
 func _physics_process(_delta: float) -> void:
 	
@@ -55,7 +55,7 @@ func _physics_process(_delta: float) -> void:
 		direction *= -1
 	
 	# start spawning bullets once end position reached
-	if !isStopped && (stopPosition - boss.global_position).length() <= 3:
+	if !isStopped && (stopPosition - boss.global_position).length() <= 4:
 		%attackTimer.start()
 		boss.global_position = stopPosition
 		isStopped = true

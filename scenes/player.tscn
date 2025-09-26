@@ -54,4 +54,4 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="parryController" parent="." instance=ExtResource("5_qlg0r")]
 
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
-[connection signal="area_entered" from="grazebox" to="." method="_on_grazebox_area_entered"]
+[connection signal="body_entered" from="grazebox" to="." method="_on_grazebox_body_entered"]

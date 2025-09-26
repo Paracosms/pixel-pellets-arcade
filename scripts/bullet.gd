@@ -10,6 +10,7 @@ var parried : bool = false
 
 func _ready() -> void:
 	get_node("parriedHurtBox/canHurtBossArea").disabled = true
+	name = "bullet"
 
 func _physics_process(delta: float) -> void:
 	var collision := move_and_collide(velocity * delta) 
@@ -37,8 +38,6 @@ func swapToParriedBullet():
 	timesBounced = -3
 	# enable the bullet to deal damage to the boss, disable the ability to do damage to player
 	get_node("parriedHurtBox/canHurtBossArea").disabled = false
-	
-	# TODO I REALLY NEED TO FIX THE README
 	
 	# change bullet attributes
 	add_to_group("parriedBullet")
