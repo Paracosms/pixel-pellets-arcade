@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsk1vjyulxwn4"]
+
+[ext_resource type="Script" uid="uid://bqsxf2uqm7kq" path="res://scenes/bosses/boss3/atk2.gd" id="1_ofmup"]
+
+[node name="Atk2" type="Node" groups=["phaseNode"]]
+script = ExtResource("1_ofmup")
+
+[node name="attackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="timeout" from="attackTimer" to="." method="attack"]

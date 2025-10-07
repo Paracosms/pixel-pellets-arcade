@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var phaseScenes = [
 	preload("res://scenes/bosses/boss3/atk0.tscn"),
 	preload("res://scenes/bosses/boss3/atk1.tscn"),
+	preload("res://scenes/bosses/boss3/atk2.tscn"),
 ]
 
 @export var health : int = 100

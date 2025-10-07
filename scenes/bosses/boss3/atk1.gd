@@ -5,7 +5,6 @@ extends Node
 @export var SPEED : int = 300
 @export var BULLETSPEED : int = 150
 
-@onready var bulletScene = preload("res://scenes/bullet.tscn")
 @onready var raindropAttackScene = preload("res://scenes/bosses/boss3/raindropBullet.tscn")
 @onready var boss = get_parent()
 @onready var stopPosition : Vector2 = Vector2(boss.global_position.x, 50)

@@ -7,7 +7,7 @@ extends CharacterBody2D
 	preload("res://scenes/bosses/boss2/atk3.tscn")
 ]
 
-@export var health : int = 50
+@export var health : int = 1 # 50
 @export var phase : Node
 var isLookingAtPlayer : bool = false
 var currentPhaseIndex : int
