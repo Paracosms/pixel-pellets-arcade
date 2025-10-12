@@ -18,7 +18,8 @@ var score = 0 # remove later, outdated feature
 	null,
 	null,
 	preload("res://scenes/bosses/boss2/boss2.tscn"),
-	preload("res://scenes/bosses/boss3/boss3.tscn")
+	preload("res://scenes/bosses/boss3/boss3.tscn"),
+	preload("res://scenes/bosses/boss4/boss4.tscn"),
 ]
 
 signal backgroundHueUpdated(newHue : float)

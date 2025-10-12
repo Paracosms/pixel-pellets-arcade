@@ -12,7 +12,7 @@ extends CharacterBody2D
 	preload("res://scenes/bosses/boss3/atk2.tscn"),
 ]
 
-@export var health : int = 100
+@export var health : int = 1 # 100
 @export var phase : Node # current atk phase
 var isLookingAtPlayer : bool = false
 var currentPhaseIndex : int
@@ -21,6 +21,7 @@ var transitionAtHealthPercent = [75, 50, 25] # the boss will force a transition 
 func takeDamage():
 	Globals.bossHealth -= 1
 	if Globals.bossHealth == 0:
+		Globals.spawnNextBoss()
 		queue_free()
 	
 	for percent in transitionAtHealthPercent:

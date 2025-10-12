@@ -71,8 +71,9 @@ func loopAttack():
 		
 		
 		while abs(boss.rotation - finalRotation) > 0.01:
-			await get_tree().physics_frame
-			boss.rotation += PI/120
+			if (get_tree() != null):
+				await get_tree().physics_frame
+				boss.rotation += PI/120
 
 func updateBulletVelocities():
 	var periodicFunction = -asin(cos(cos(timeAlive))) + 3.2 

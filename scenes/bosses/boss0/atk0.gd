@@ -15,7 +15,6 @@ func _ready() -> void:
 
 # TODO: determine movement booleans
 func getMovementPattern():
-	#boss.isMoving = true
 	#boss.isLookingAtPlayer = true
 	pass
 

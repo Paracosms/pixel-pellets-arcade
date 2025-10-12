@@ -1,15 +1,8 @@
-### DEFAULT BOSS TEMPLATE
-# TODO: don't forget to rename the root of the scene !
-# TODO: add the atk0 node as a component and child of boss0
-# bosses are numbered by sides, (e.g. boss2 is line, boss3 is triangle)
-# exceptions to this are boss0 (template) and boss1 (tutorial)
-# when copying this template, copy both boss0.gd/tscn and atk0.gd/tscn
-
 extends CharacterBody2D
 
 # preload all atks here
 @onready var phaseScenes = [
-	#preload("res://scenes/bosses/boss0/atk0.tscn"),
+	preload("res://scenes/bosses/boss4/atk0.tscn"),
 ]
 
 @export var health : int = 50
@@ -31,6 +24,7 @@ func takeDamage():
 func _ready() -> void:
 	Globals.bossHealth = health # number of bullets before death
 	Globals.maxBossHealth = health
+	Globals.changeBackgroundHue(0.88) # update background to be yellow (decrement by 0.06)
 
 func _physics_process(_delta: float) -> void:
 	# getMovementPattern updates variables here that the boss can execute
@@ -44,8 +38,8 @@ func _physics_process(_delta: float) -> void:
 
 func transition():
 	var phaseIndex = randi_range(0, phaseScenes.size() - 1)
-	while phaseIndex == currentPhaseIndex:
-		phaseIndex = randi_range(0, phaseScenes.size() - 1)
+	#while phaseIndex == currentPhaseIndex:
+	#	phaseIndex = randi_range(0, phaseScenes.size() - 1)
 	
 	# phaseIndex = 0 ### for debug purposes
 	

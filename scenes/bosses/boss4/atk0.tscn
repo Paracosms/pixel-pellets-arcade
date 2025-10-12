@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx8gxhwhubvbu"]
+
+[ext_resource type="Script" uid="uid://dwekjpl8it5ak" path="res://scenes/bosses/boss4/atk0.gd" id="1_nvlug"]
+
+[node name="Atk0" type="Node2D" groups=["phaseNode"]]
+script = ExtResource("1_nvlug")
+
+[node name="bulletTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="corners" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="bottomLeft" type="Node2D" parent="corners"]
+position = Vector2(-32, 32)
+
+[node name="pad1" type="Node2D" parent="corners/bottomLeft"]
+position = Vector2(0, -11)
+
+[node name="pad2" type="Node2D" parent="corners/bottomLeft"]
+position = Vector2(11, 0)
+
+[node name="bottomRight" type="Node2D" parent="corners"]
+position = Vector2(32, 32)
+
+[node name="pad1" type="Node2D" parent="corners/bottomRight"]
+position = Vector2(0, -11)
+
+[node name="pad2" type="Node2D" parent="corners/bottomRight"]
+position = Vector2(-11, 0)
+
+[node name="topLeft" type="Node2D" parent="corners"]
+position = Vector2(-32, -32)
+
+[node name="pad1" type="Node2D" parent="corners/topLeft"]
+position = Vector2(0, 11)
+
+[node name="pad2" type="Node2D" parent="corners/topLeft"]
+position = Vector2(11, 0)
+
+[node name="topRight" type="Node2D" parent="corners"]
+position = Vector2(32, -32)
+
+[node name="pad1" type="Node2D" parent="corners/topRight"]
+position = Vector2(0, 11)
+
+[node name="pad2" type="Node2D" parent="corners/topRight"]
+position = Vector2(-11, 0)
+
+[connection signal="timeout" from="bulletTimer" to="." method="spawnBullets"]
